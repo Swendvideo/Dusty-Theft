@@ -1,7 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+
+[Serializable]
+public class EnemyType
+{
+    public string name;
+    public Enemy EnemyPrefab;
+    public int DifficultyCost;
+}
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -9,21 +20,38 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] float detectionRadius;
     [SerializeField] float secondsBeforeActivatingAbility;
     [SerializeField] NavMeshAgent navMeshAgent;
-    Vector2 patrolPoint;
+    Vector3 patrolPoint;
     bool isAggro;
     Transform target;
+
+    void Awake()
+    {
+        Init();
+    }
+
+    public void Init()
+    {
+        navMeshAgent.updateRotation = false;
+		navMeshAgent.updateUpAxis = false;
+        StartCoroutine(Activate());
+    }
+
     IEnumerator Activate()
     {
+        isAggro = false;
         while (true)
         {
-            if(isAggro)
-            {
-                MoveAggro();
-            }
-            else
+            while(!isAggro)
             {
                 MovePatrol();
+                yield return new WaitUntil(() => navMeshAgent.remainingDistance < 0.3f);
             }
+            while(isAggro)
+            {
+                MoveAggro();
+                yield return null;
+            }
+            //yield return new WaitUntil(() => !isAggro);
         }
     }
 
@@ -31,30 +59,37 @@ public abstract class Enemy : MonoBehaviour
     {
         if(other.transform.CompareTag("Player"))
         {
+            navMeshAgent.autoBraking = false;
             isAggro = true;
             target = other.transform;
+            MoveAggro();
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if(other.transform.CompareTag("Border"))
+        if(other.transform.CompareTag("Player"))
         {
-            patrolDirection = new Vector2(Random.Range(-1,1), Random.Range(-1,1));
+            navMeshAgent.autoBraking = true;
+            isAggro = false;
         }
     }
 
-    void GetPatrolPoint()
+    Vector3 GetPatrolPoint()
     {
-        
+        NavMeshHit hit;
+        var randomNum = Enumerable.Range(-5, 11).Where(x => (x <= -3 || x >= 3)).ToArray();
+        NavMesh.SamplePosition(new Vector3(transform.position.x + randomNum[UnityEngine.Random.Range(0,randomNum.Length)] ,transform.position.y + randomNum[UnityEngine.Random.Range(0,randomNum.Length)]) , out hit, 5f, NavMesh.AllAreas);
+        return hit.position;
     }
     virtual public void MovePatrol()
     {
-        
+        Vector3 point = GetPatrolPoint();
+        navMeshAgent.SetDestination(point);
     }
     virtual public void MoveAggro()
     {
-        
+        navMeshAgent.SetDestination(target.position);
     }
     virtual public void UseAbility()
     {
