@@ -23,20 +23,20 @@ public abstract class Enemy : MonoBehaviour
     Vector3 patrolPoint;
     bool isAggro;
     Transform target;
-
-    void Awake()
-    {
-        Init();
-    }
-
     public void Init()
     {
         navMeshAgent.updateRotation = false;
 		navMeshAgent.updateUpAxis = false;
-        StartCoroutine(Activate());
     }
 
-    IEnumerator Activate()
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+        Debug.Log(gameObject.activeInHierarchy);
+        StartCoroutine(Process());
+    }
+
+    IEnumerator Process()
     {
         isAggro = false;
         while (true)
@@ -51,7 +51,6 @@ public abstract class Enemy : MonoBehaviour
                 MoveAggro();
                 yield return null;
             }
-            //yield return new WaitUntil(() => !isAggro);
         }
     }
 

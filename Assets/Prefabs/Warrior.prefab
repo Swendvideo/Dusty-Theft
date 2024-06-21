@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  detectionRadius: 4
+  detectionRadius: 5
   secondsBeforeActivatingAbility: 4
   navMeshAgent: {fileID: 6935121831449205084}
 --- !u!195 &6935121831449205084

@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public List<EnemyType> enemyTypes;
-    public GameManager Instance
+    public LocationManager locationManager;
+    public static GameManager Instance
     {
         get;
         private set;
+    }
+    public int Difficulty;
+    public Transform menu;
+
+    public void StartGame()
+    {
+        StartCoroutine(locationManager.GameProcess(Difficulty));
     }
 
     void Awake()

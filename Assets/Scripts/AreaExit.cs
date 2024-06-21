@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class AreaExit : MonoBehaviour
 {
-    public event Action exit;
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(other.CompareTag("Player"))
         {
-            exit.Invoke();
+            GameManager.Instance.locationManager.AreaCleared();
+            Debug.Log("test2");
         }
     }
 }
