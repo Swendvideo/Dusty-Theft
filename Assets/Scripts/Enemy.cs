@@ -20,6 +20,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] float detectionRadius;
     [SerializeField] float secondsBeforeActivatingAbility;
     [SerializeField] NavMeshAgent navMeshAgent;
+    [SerializeField] int ExcludeRangeAbs; 
     Vector3 patrolPoint;
     bool isAggro;
     Transform target;
@@ -31,8 +32,6 @@ public abstract class Enemy : MonoBehaviour
 
     public void Activate()
     {
-        gameObject.SetActive(true);
-        Debug.Log(gameObject.activeInHierarchy);
         StartCoroutine(Process());
     }
 
@@ -77,7 +76,7 @@ public abstract class Enemy : MonoBehaviour
     Vector3 GetPatrolPoint()
     {
         NavMeshHit hit;
-        var randomNum = Enumerable.Range(-5, 11).Where(x => (x <= -3 || x >= 3)).ToArray();
+        var randomNum = Enumerable.Range(-5, 11).Where(x => (x <= -ExcludeRangeAbs || ExcludeRangeAbs >= 3)).ToArray();
         NavMesh.SamplePosition(new Vector3(transform.position.x + randomNum[UnityEngine.Random.Range(0,randomNum.Length)] ,transform.position.y + randomNum[UnityEngine.Random.Range(0,randomNum.Length)]) , out hit, 5f, NavMesh.AllAreas);
         return hit.position;
     }

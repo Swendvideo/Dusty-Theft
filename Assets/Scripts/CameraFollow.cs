@@ -7,7 +7,15 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Transform target;
     void Update()
     {
-        Vector3 pos = new Vector3(target.position.x, target.position.y, -10);
-        transform.position = pos;
+        if (target != null)
+        {
+            Vector3 pos = new Vector3(target.position.x, target.position.y, -10);
+            transform.position = pos;
+        }
+    }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
     }
 }

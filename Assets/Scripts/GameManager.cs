@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public List<EnemyType> enemyTypes;
     public LocationManager locationManager;
+    public CameraFollow PlayerCamera;
     public static GameManager Instance
     {
         get;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     }
     public int Difficulty;
     public Transform menu;
+
 
     public void StartGame()
     {
