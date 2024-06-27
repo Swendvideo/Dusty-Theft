@@ -21,7 +21,7 @@ public class LocationManager : MonoBehaviour
     [SerializeField] Animator loadScreen;
     [SerializeField] Player playerPrefab;
     List<Enemy> enemies = new List<Enemy>();
-    Area activeArea;
+    public Area activeArea;
     
     public void AreaCleared()
     {

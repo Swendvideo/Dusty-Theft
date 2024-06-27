@@ -46,8 +46,9 @@ public abstract class Enemy : MonoBehaviour
 
             while(!isAggro)
             {
-                MovePatrol();
+
                 yield return new WaitUntil(() => navMeshAgent.remainingDistance < 0.3f || isAggro);
+                MovePatrol();
             }
             while(isAggro)
             {
@@ -66,7 +67,6 @@ public abstract class Enemy : MonoBehaviour
             isAggro = true;
             target = other.transform;
             navMeshAgent.speed = chaiseSpeed;
-            StartCoroutine(AbilityCycle());
         }
     }
 
@@ -74,9 +74,10 @@ public abstract class Enemy : MonoBehaviour
     {
         if(other.transform.CompareTag("Player"))
         {
+            navMeshAgent.SetDestination(playerTransform.position);
             navMeshAgent.autoBraking = true;
-            isAggro = false;
             navMeshAgent.speed = patrolSpeed;
+            isAggro = false;
         }
         
     }
@@ -100,7 +101,7 @@ public abstract class Enemy : MonoBehaviour
 
     virtual public void ActivateAbility()
     {
-        navMeshAgent.SetDestination(target.position);
+        
     }
 
     virtual public IEnumerator AbilityCycle()

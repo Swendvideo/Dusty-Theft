@@ -21,4 +21,14 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.transform.CompareTag("Arrow"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        Debug.Log("smth");
+
+    }
 }

@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5004025941529264697}
   - component: {fileID: 7585723162243305989}
-  - component: {fileID: 4194516258924693477}
-  - component: {fileID: 2879243880490563788}
-  - component: {fileID: 8910767950782085378}
-  - component: {fileID: 6935121831449205084}
+  - component: {fileID: 4869770917676167105}
+  - component: {fileID: 3507901831375564284}
+  - component: {fileID: 6302802766383488960}
+  - component: {fileID: 231883683673382101}
   m_Layer: 0
-  m_Name: Warrior
+  m_Name: Warriror
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 3585272091894192761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 5.82, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.51, y: 5.5101, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac8e5d3ecc283aa4195871ad024a447a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4194516258924693477
+--- !u!58 &4869770917676167105
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,8 +122,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
---- !u!58 &2879243880490563788
+  m_Radius: 1.28
+--- !u!58 &3507901831375564284
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,8 +157,30 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
+  m_Radius: 1.28
+--- !u!195 &6302802766383488960
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3585272091894192761}
+  m_Enabled: 1
+  m_AgentTypeID: 0
   m_Radius: 0.5
---- !u!114 &8910767950782085378
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 240
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.56
+  m_BaseOffset: 1.28
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &231883683673382101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,31 +192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82bb2144ea1c954c89f92504883da84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaiseSpeed: 4
-  patrolSpeed: 2
-  detectionRadius: 5
-  secondsBeforeActivatingAbility: 4
-  navMeshAgent: {fileID: 6935121831449205084}
+  chaiseSpeed: 3.5
+  patrolSpeed: 2.5
+  detectionRadius: 6
+  abilityCooldown: 3
+  navMeshAgent: {fileID: 6302802766383488960}
+  detectionCollider: {fileID: 4869770917676167105}
   ExcludeRangeAbs: 3
---- !u!195 &6935121831449205084
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3585272091894192761}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 2
-  m_Acceleration: 20
-  avoidancePriority: 50
-  m_AngularSpeed: 240
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
