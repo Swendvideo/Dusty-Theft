@@ -59,7 +59,7 @@ public class Archer : Enemy
         Debug.DrawRay(hit.point, hit.point - (Vector2)transform.position, Color.green, 10);
         var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity, GameManager.Instance.locationManager.activeArea.transform);
         arrow.transform.right = playerTransform.position - arrow.transform.position;
-        arrow.transform.DOMove(hit.point, (hit.point - (Vector2)transform.position).magnitude/projectileSpeed).SetEase(Ease.Linear);
+        arrow.transform.DOMove(hit.point, (hit.point - (Vector2)transform.position).magnitude/projectileSpeed).SetEase(Ease.Linear).OnComplete(() => arrow.gameObject.tag = "Untagged"); 
         Debug.Log((hit.point, (hit.point - (Vector2)transform.position).magnitude/projectileSpeed));
         
     }

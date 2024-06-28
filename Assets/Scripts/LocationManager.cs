@@ -93,11 +93,13 @@ public class LocationManager : MonoBehaviour
         loadScreen.gameObject.SetActive(true);
         int locationCost = difficulty;
         Player player = Instantiate(playerPrefab);
+        player.Init();
         player.gameObject.SetActive(false);
         while(locationCost > 0)
         {
             ActivateLoadingScreen();
             yield return new WaitForSeconds(0.3f);
+            GameManager.Instance.playerUI.UpdateHealthIndicator(player.Health);
             if(activeArea != null)
             {
                 DestroyEnemiesAndArea();

@@ -25,6 +25,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] int ExcludeRangeAbs; 
     protected Transform playerTransform;
     bool isAggro;
+    bool isAgentStuck;
     Transform target;
     public void Init()
     {
@@ -41,14 +42,14 @@ public abstract class Enemy : MonoBehaviour
     IEnumerator Process()
     {
         isAggro = false;
+        StartCoroutine(CheckIfAgentIsStuck());
         while (true)
         {
-
             while(!isAggro)
             {
-
-                yield return new WaitUntil(() => navMeshAgent.remainingDistance < 0.3f || isAggro);
+                yield return new WaitUntil(() => navMeshAgent.remainingDistance < 0.3f || isAggro || isAgentStuck);
                 MovePatrol();
+                isAgentStuck = false;
             }
             while(isAggro)
             {
@@ -78,8 +79,8 @@ public abstract class Enemy : MonoBehaviour
             navMeshAgent.autoBraking = true;
             navMeshAgent.speed = patrolSpeed;
             isAggro = false;
+            StartCoroutine(CheckIfAgentIsStuck());
         }
-        
     }
 
     Vector3 GetPatrolPoint()
@@ -111,5 +112,23 @@ public abstract class Enemy : MonoBehaviour
             yield return new WaitForSeconds(abilityCooldown);
             ActivateAbility();
         }
+    }
+
+    IEnumerator CheckIfAgentIsStuck()
+    {
+        float stopTimer = 0;
+        while (navMeshAgent.enabled && !navMeshAgent.isStopped && stopTimer < 0.3f)
+        {
+            yield return new WaitForFixedUpdate();
+            if (navMeshAgent.velocity.magnitude < 0.02f)
+            {
+                stopTimer += Time.fixedDeltaTime;
+            }
+            else
+            {
+                stopTimer = 0;
+            }
+        }
+        isAgentStuck = true;
     }
 }

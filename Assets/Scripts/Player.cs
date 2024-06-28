@@ -1,12 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] float maxHealth;
+    [SerializeField] float immunityDuration;
+    [SerializeField] Animator animator;
+    bool isImmune = false;
+    public float Health
+    {
+        get;
+        private set;
+    }
+
+    public void Init()
+    {
+        Health = maxHealth;
+    }
+
     void Update()
     {
         float y = Input.GetAxis("Vertical") * speed;
@@ -14,11 +28,26 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector3(x, y,0)*Time.deltaTime*speed;
     }
 
+    void TakeDamage(float damage)
+    {
+        if (!isImmune)
+        {
+            Health -= damage;
+            Debug.Log(Health);
+            GameManager.Instance.playerUI.UpdateHealthIndicator(Health);
+            if (Health <= 0)
+            {
+                GameManager.Instance.Death();
+            }
+            StartCoroutine(Immunity());
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.transform.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            TakeDamage(1f);
         }
     }
 
@@ -26,9 +55,16 @@ public class Player : MonoBehaviour
     {
         if(other.transform.CompareTag("Arrow"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            TakeDamage(0.5f);
         }
-        Debug.Log("smth");
+    }
 
+    IEnumerator Immunity()
+    {
+        isImmune = true;
+        animator.SetBool("IsImmune", true);        
+        yield return new WaitForSeconds(immunityDuration);
+        animator.SetBool("IsImmune", false);
+        isImmune = false;
     }
 }

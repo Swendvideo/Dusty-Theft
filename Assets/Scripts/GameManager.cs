@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public List<EnemyType> enemyTypes;
     public LocationManager locationManager;
+    public PlayerUI playerUI;
     public CameraFollow PlayerCamera;
     public static GameManager Instance
     {
@@ -16,7 +17,6 @@ public class GameManager : MonoBehaviour
     }
     public int Difficulty;
     public Transform menu;
-
 
     public void StartGame()
     {
@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Application.targetFrameRate = 60;
+    }
 
+    public void Death()
+    {
+        
     }
 }
