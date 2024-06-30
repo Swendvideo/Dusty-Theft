@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         {
             Health -= damage;
             Debug.Log(Health);
-            GameManager.Instance.playerUI.UpdateHealthIndicator(Health);
+            GameManager.Instance.PlayerUI.UpdateHealthIndicator(Health);
             if (Health <= 0)
             {
                 GameManager.Instance.Death();

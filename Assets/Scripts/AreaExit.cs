@@ -10,7 +10,7 @@ public class AreaExit : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            GameManager.Instance.locationManager.AreaCleared();
+            GameManager.Instance.LocationManager.AreaCleared();
             Debug.Log("test2");
         }
     }

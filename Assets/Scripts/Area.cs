@@ -11,8 +11,4 @@ public class Area : MonoBehaviour
     [SerializeField] public Transform spawnPoint;
     [SerializeField] public AreaExit areaExit;
     public List<Enemy> enemies = new List<Enemy>();
-    void ExitLocation()
-    {
-        GameManager.Instance.locationManager.AreaCleared();
-    }
 }

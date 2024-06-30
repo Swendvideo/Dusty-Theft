@@ -2,6 +2,17 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
+    public int Money
+    {
+        get;
+        private set;
+    }
+
+    public int Difficulty
+    {
+        get;
+        private set;
+    }
 
     public void SaveData(PlayerData pd)
     {
@@ -21,6 +32,12 @@ public class DataManager : MonoBehaviour
         {
             return new PlayerData();
         }
+    }
+
+    public void ChangeDifficulty(int difficulty)
+    {
+        Debug.Log(difficulty);
+        Difficulty = difficulty;
     }
 
     void Awake()

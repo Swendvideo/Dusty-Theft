@@ -16,7 +16,7 @@ public class EnemyType
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] float chaiseSpeed;
+    [SerializeField] protected float chaiseSpeed;
     [SerializeField] float patrolSpeed;
     [SerializeField] float detectionRadius;
     [SerializeField] protected float abilityCooldown;

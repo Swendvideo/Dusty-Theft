@@ -50,7 +50,7 @@ public class LocationManager : MonoBehaviour
         int difficultyCoin = GameManager.Instance.Difficulty;
         while(difficultyCoin > 0)
         {
-            var availableEnemies = GameManager.Instance.enemyTypes.Where(e => difficultyCoin >= e.DifficultyCost).ToArray();
+            var availableEnemies = GameManager.Instance.EnemyTypes.Where(e => difficultyCoin >= e.DifficultyCost).ToArray();
             Enemy enemy = availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count())].EnemyPrefab;
             var e = Instantiate(enemy,GetRandomPointInBound(area.enemySpawnArea.bounds), new Quaternion());
             e.Init();
@@ -99,7 +99,7 @@ public class LocationManager : MonoBehaviour
         {
             ActivateLoadingScreen();
             yield return new WaitForSeconds(0.3f);
-            GameManager.Instance.playerUI.UpdateHealthIndicator(player.Health);
+            GameManager.Instance.PlayerUI.UpdateHealthIndicator(player.Health);
             if(activeArea != null)
             {
                 DestroyEnemiesAndArea();

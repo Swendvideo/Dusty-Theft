@@ -57,7 +57,7 @@ public class Archer : Enemy
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, playerTransform.position - transform.position, int.MaxValue, 1 << 6);
         Debug.DrawRay(hit.point, hit.point - (Vector2)transform.position, Color.green, 10);
-        var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity, GameManager.Instance.locationManager.activeArea.transform);
+        var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity, GameManager.Instance.LocationManager.activeArea.transform);
         arrow.transform.right = playerTransform.position - arrow.transform.position;
         arrow.transform.DOMove(hit.point, (hit.point - (Vector2)transform.position).magnitude/projectileSpeed).SetEase(Ease.Linear).OnComplete(() => arrow.gameObject.tag = "Untagged"); 
         Debug.Log((hit.point, (hit.point - (Vector2)transform.position).magnitude/projectileSpeed));

@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<EnemyType> enemyTypes;
-    public LocationManager locationManager;
-    public PlayerUI playerUI;
+    public List<EnemyType> EnemyTypes;
+    public LocationManager LocationManager;
+    public DataManager DataManager;
+    public PlayerUI PlayerUI;
     public CameraFollow PlayerCamera;
     public static GameManager Instance
     {
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(locationManager.GameProcess(Difficulty));
+        StartCoroutine(LocationManager.GameProcess(Difficulty));
     }
 
     void Awake()

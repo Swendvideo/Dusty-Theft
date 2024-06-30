@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6815234959424606083}
   - component: {fileID: 7492961320797100804}
   - component: {fileID: 5410033770959252539}
-  - component: {fileID: 1286119199117692380}
+  - component: {fileID: 2068548474943986199}
   m_Layer: 6
   m_Name: Obstacle
   m_TagString: Untagged
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4808884119071930251}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.0020960104, w: 0.9999978}
-  m_LocalPosition: {x: -4.98, y: 1.83, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.24}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7492961320797100804
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 931057933, guid: 30a6ede07d021174aba61c75330507d8, type: 3}
+  m_Sprite: {fileID: -672565356, guid: 30a6ede07d021174aba61c75330507d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 5.8514285, y: 0.99142855}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -120,10 +120,10 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0.99142855, z: 0, w: 0}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.8514285, y: 0.99142855}
-    newSize: {x: 5.8514285, y: 0.99142855}
+    oldSize: {x: 5.8514285, y: 0.98714286}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.8514285, y: 0.99142855}
   m_EdgeRadius: 0
---- !u!114 &1286119199117692380
+--- !u!114 &2068548474943986199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
