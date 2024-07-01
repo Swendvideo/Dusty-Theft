@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -38,6 +39,12 @@ public class DataManager : MonoBehaviour
     {
         Debug.Log(difficulty);
         Difficulty = difficulty;
+    }
+
+    public int GetEnemyCoinDependingOnDifficulty()
+    {
+        int enemyCoin = (int)math.round(0.5f*Difficulty +0.1f);
+        return enemyCoin;
     }
 
     void Awake()

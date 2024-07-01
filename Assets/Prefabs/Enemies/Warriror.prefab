@@ -194,7 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaiseSpeed: 3.5
   patrolSpeed: 2.5
-  detectionRadius: 8
+  patrolDetectionRadius: 6
+  chaseDetectionRadius: 9
   abilityCooldown: 3
   navMeshAgent: {fileID: 6302802766383488960}
   detectionCollider: {fileID: 4869770917676167105}

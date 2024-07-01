@@ -3611,12 +3611,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb9f184e65a934488891abfcc092df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTypes: []
-  LocationManager: {fileID: 0}
-  DataManager: {fileID: 0}
-  PlayerUI: {fileID: 0}
+  EnemyTypes:
+  - name: Warrior
+    EnemyPrefab: {fileID: 231883683673382101, guid: 445a254f6c185204ca1ce576ea458d8a, type: 3}
+    DifficultyCost: 1
+  - name: Archer
+    EnemyPrefab: {fileID: 5544521900637442304, guid: 2d872862f06828649a90e3ee280914f9, type: 3}
+    DifficultyCost: 1
+  - name: Assasin
+    EnemyPrefab: {fileID: -5201120703984520619, guid: e58742390aec710449a0d21a086edd08, type: 3}
+    DifficultyCost: 2
+  LocationManager: {fileID: 2110678765}
+  DataManager: {fileID: 1627585636}
+  PlayerUI: {fileID: 1413537219}
   PlayerCamera: {fileID: 519420033}
-  Difficulty: 2
   menu: {fileID: 596742823}
 --- !u!4 &1700666443
 Transform:
@@ -4266,8 +4274,10 @@ MonoBehaviour:
   Locations:
   - Area: {fileID: 7770957135046199505, guid: 25ef60dbcb07f3d48b0022a7bc292277, type: 3}
     DifficultyCost: 1
+    maxEnemies: 0
   - Area: {fileID: 7770957135046199505, guid: 7dcfc28ad4372c944b8659f0089d7372, type: 3}
     DifficultyCost: 1
+    maxEnemies: 0
   navMeshSurface: {fileID: 584628259}
   loadScreen: {fileID: 38360126}
   playerPrefab: {fileID: 5307199145392142320, guid: aeb7559681eeab640952770f2c28b139, type: 3}

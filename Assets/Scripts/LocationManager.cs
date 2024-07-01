@@ -10,6 +10,7 @@ public class Location
 {
     public Area Area;
     public int DifficultyCost;
+    public int maxEnemies;
 }
 public class LocationManager : MonoBehaviour
 {
@@ -45,17 +46,17 @@ public class LocationManager : MonoBehaviour
         return new Vector3(x,y,0);
     }
 
-    IEnumerator SpawnEnemies(Area area)
+    IEnumerator SpawnEnemies(Area area, int maxEnemies)
     {
-        int difficultyCoin = GameManager.Instance.Difficulty;
-        while(difficultyCoin > 0)
+        int difficultyCoin = GameManager.Instance.DataManager.GetEnemyCoinDependingOnDifficulty();
+        while((difficultyCoin > 0) || (enemies.Count < maxEnemies))
         {
             var availableEnemies = GameManager.Instance.EnemyTypes.Where(e => difficultyCoin >= e.DifficultyCost).ToArray();
-            Enemy enemy = availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count())].EnemyPrefab;
-            var e = Instantiate(enemy,GetRandomPointInBound(area.enemySpawnArea.bounds), new Quaternion());
+            EnemyType randomEnemyType = availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count())];
+            var e = Instantiate(randomEnemyType.EnemyPrefab,GetRandomPointInBound(area.enemySpawnArea.bounds), new Quaternion());
             e.Init();
             enemies.Add(e);
-            difficultyCoin -= 1;
+            difficultyCoin -= randomEnemyType.DifficultyCost;
             Debug.Log("spawned");
             yield return new WaitUntil(() => e.isActiveAndEnabled);
         }
@@ -88,10 +89,10 @@ public class LocationManager : MonoBehaviour
         Destroy(activeArea.gameObject);
         enemies.Clear();
     }
-    public IEnumerator GameProcess(int difficulty)
+    public IEnumerator GameProcess()
     {
         loadScreen.gameObject.SetActive(true);
-        int locationCost = difficulty;
+        int locationCost = GameManager.Instance.DataManager.Difficulty;
         Player player = Instantiate(playerPrefab);
         player.Init();
         player.gameObject.SetActive(false);
@@ -119,7 +120,7 @@ public class LocationManager : MonoBehaviour
             player.transform.position = loc.spawnPoint.position;
             GameManager.Instance.PlayerCamera.SetTarget(player.transform);
             yield return null;
-            yield return SpawnEnemies(loc);
+            yield return SpawnEnemies(loc, randomLocation.maxEnemies);
             isSceneActive = true;
             player.gameObject.SetActive(true);
             DisableLoadingScreen();

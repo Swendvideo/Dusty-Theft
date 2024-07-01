@@ -16,12 +16,11 @@ public class GameManager : MonoBehaviour
         get;
         private set;
     }
-    public int Difficulty;
     public Transform menu;
 
     public void StartGame()
     {
-        StartCoroutine(LocationManager.GameProcess(Difficulty));
+        StartCoroutine(LocationManager.GameProcess());
     }
 
     void Awake()

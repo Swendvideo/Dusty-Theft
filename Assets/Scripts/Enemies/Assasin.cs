@@ -2,14 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Assasin : Enemy
 {
     bool isAbilityCycleActive = false;
     [SerializeField] float leapPower;
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] RectTransform leapIndicator;
+    [SerializeField] Image leapIndicator;
+    [SerializeField] Gradient indicatorGradient;
+    [SerializeField] Color leapIndicatorColorBeginning;
+    [SerializeField] Color leapIndicatorColorFinal;
+    Sequence colorChanging;
     Coroutine abilityCycle;
+
+    public override void Init()
+    {
+        colorChanging = DOTween.Sequence();
+        base.Init();
+        colorChanging.Append(leapIndicator.DOColor(leapIndicatorColorFinal, abilityCooldown)).SetAutoKill(false).Pause();
+    }
+
     public override void MoveAggro()
     {
         if(Physics2D.Raycast(transform.position, playerTransform.position - transform.position, (playerTransform.position - transform.position).magnitude, 1 << 6))
@@ -20,9 +33,8 @@ public class Assasin : Enemy
                 isAbilityCycleActive = false;
                 abilityCycle = null;
             }
-            navMeshAgent.isStopped = false;
             navMeshAgent.SetDestination(playerTransform.position);
-            leapIndicator.gameObject.SetActive(false);
+            DeactivateIndicator();
         }
         else
         {
@@ -32,8 +44,7 @@ public class Assasin : Enemy
                 isAbilityCycleActive = true;
             }
             navMeshAgent.SetDestination(playerTransform.position);
-            leapIndicator.gameObject.SetActive(true);
-            leapIndicator.right = new Vector3(playerTransform.position.x - transform.position.x, playerTransform.position.y - transform.position.y, 0);
+            leapIndicator.transform.right = new Vector3(playerTransform.position.x - transform.position.x, playerTransform.position.y - transform.position.y, 0);
         }
     }
 
@@ -41,28 +52,52 @@ public class Assasin : Enemy
     {
         if(other.CompareTag("Player"))
         {
-            StopCoroutine(abilityCycle);
-            isAbilityCycleActive = false;
+            if(isAbilityCycleActive)
+            {
+                StopCoroutine(abilityCycle);
+                isAbilityCycleActive = false;
+                abilityCycle = null;
+            }
             navMeshAgent.isStopped = false;
             base.OnTriggerExit2D(other);
-            leapIndicator.gameObject.SetActive(false);
+            DeactivateIndicator();
 
         }
 
+    }
+
+    void ActivateIndicator()
+    {
+        leapIndicator.color = leapIndicatorColorBeginning;
+        leapIndicator.gameObject.SetActive(true);
+        colorChanging.Rewind(false);
+        colorChanging.Play();
+        Debug.Log(colorChanging.IsComplete());
+    }
+
+    void DeactivateIndicator()
+    {
+        leapIndicator.gameObject.SetActive(false);
+        colorChanging.Rewind(false);
     }
 
     public override IEnumerator AbilityCycle()
     {
         while(true)
         {
+            ActivateIndicator();
             yield return new WaitForSeconds(abilityCooldown);
+            leapIndicator.color = leapIndicatorColorBeginning;
             ActivateAbility();
+            yield return new WaitForSeconds(0.5f);
+            rb.velocity = Vector2.zero;
         }
     }
 
     public override void ActivateAbility()
     {
         rb.AddForce((playerTransform.position-transform.position).normalized * leapPower, ForceMode2D.Impulse);
+
     }
 
 

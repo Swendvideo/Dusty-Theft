@@ -18,7 +18,8 @@ public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected float chaiseSpeed;
     [SerializeField] float patrolSpeed;
-    [SerializeField] float detectionRadius;
+    [SerializeField] float patrolDetectionRadius;
+    [SerializeField] float chaseDetectionRadius;
     [SerializeField] protected float abilityCooldown;
     [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] CircleCollider2D detectionCollider;
@@ -27,11 +28,11 @@ public abstract class Enemy : MonoBehaviour
     bool isAggro;
     bool isAgentStuck;
     Transform target;
-    public void Init()
+    virtual public void Init()
     {
         navMeshAgent.updateRotation = false;
 		navMeshAgent.updateUpAxis = false;
-        detectionCollider.radius = detectionRadius;
+        detectionCollider.radius = patrolDetectionRadius;
     }
 
     public void Activate()
@@ -68,6 +69,7 @@ public abstract class Enemy : MonoBehaviour
             isAggro = true;
             target = other.transform;
             navMeshAgent.speed = chaiseSpeed;
+            detectionCollider.radius = chaseDetectionRadius;
         }
     }
 
@@ -80,6 +82,7 @@ public abstract class Enemy : MonoBehaviour
             navMeshAgent.speed = patrolSpeed;
             isAggro = false;
             StartCoroutine(CheckIfAgentIsStuck());
+            detectionCollider.radius = patrolDetectionRadius;
         }
     }
 
