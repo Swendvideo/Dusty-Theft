@@ -528,6 +528,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 538549792349124645}
   - {fileID: 725766147761495365}
   - {fileID: 6092450592770490594}
   - {fileID: 8140282162803656365}
@@ -535,13 +536,12 @@ Transform:
   - {fileID: 2273703158911975140}
   - {fileID: 6461152120177694804}
   - {fileID: 1286370323728847841}
+  - {fileID: 8291795886947670746}
+  - {fileID: 899156770400941504}
+  - {fileID: 591087461228774484}
   - {fileID: 5024221294771185434}
   - {fileID: 393707806452883208}
   - {fileID: 2095026251840840068}
-  - {fileID: 8291795886947670746}
-  - {fileID: 899156770400941504}
-  - {fileID: 538549792349124645}
-  - {fileID: 591087461228774484}
   - {fileID: 8905660907130869253}
   - {fileID: 5456971359368045867}
   - {fileID: 2654909188661632292}
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 7856932581272394918}
   m_Layer: 0
   m_Name: GameFloor
-  m_TagString: Untagged
+  m_TagString: GameFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

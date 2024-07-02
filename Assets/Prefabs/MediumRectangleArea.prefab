@@ -528,6 +528,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 538549792349124645}
   - {fileID: 725766147761495365}
   - {fileID: 6092450592770490594}
   - {fileID: 8140282162803656365}
@@ -535,12 +536,11 @@ Transform:
   - {fileID: 2273703158911975140}
   - {fileID: 6461152120177694804}
   - {fileID: 1286370323728847841}
-  - {fileID: 5024221294771185434}
-  - {fileID: 6442606111534449520}
   - {fileID: 8291795886947670746}
   - {fileID: 899156770400941504}
-  - {fileID: 538549792349124645}
   - {fileID: 591087461228774484}
+  - {fileID: 5024221294771185434}
+  - {fileID: 6442606111534449520}
   - {fileID: 4369125725577319441}
   - {fileID: 5462031676616519970}
   - {fileID: 7823491926391200044}
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 5028176858998730453}
   m_Layer: 0
   m_Name: GameFloor
-  m_TagString: Untagged
+  m_TagString: GameFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1745,6 +1745,14 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 0.9667358
       objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTiling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6815234959424606083, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.3306
@@ -1792,6 +1800,14 @@ PrefabInstance:
     - target: {fileID: 7492961320797100804, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Size.y
       value: 0.9667358
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492961320797100804, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_SpriteTileMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492961320797100804, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_AdaptiveModeThreshold
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

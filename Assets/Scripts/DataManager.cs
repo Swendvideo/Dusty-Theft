@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -14,6 +16,7 @@ public class DataManager : MonoBehaviour
         get;
         private set;
     }
+    public List<PlayerAbility> playerAbilities;
 
     public void SaveData(PlayerData pd)
     {
