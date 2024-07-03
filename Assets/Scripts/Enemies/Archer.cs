@@ -40,6 +40,12 @@ public class Archer : Enemy
         {
             navMeshAgent.isStopped = false;
             base.OnTriggerExit2D(other);
+            if(isAbilityCycleActive)
+            {
+                StopCoroutine(abilityCycle);
+                isAbilityCycleActive = false;
+                abilityCycle = null;
+            }
         }
 
     }

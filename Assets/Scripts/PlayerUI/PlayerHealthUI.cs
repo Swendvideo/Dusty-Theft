@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerUI : MonoBehaviour
+public class PlayerHealthUI : MonoBehaviour
 {
     [SerializeField] List<Transform> fullHearts;
     [SerializeField] Transform halfHeart;
 
     public void UpdateHealthIndicator(float health)
-    { 
+    {
         foreach(Transform heart in fullHearts)
         {
             heart.gameObject.SetActive(false);

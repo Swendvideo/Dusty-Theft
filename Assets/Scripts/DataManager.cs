@@ -17,6 +17,7 @@ public class DataManager : MonoBehaviour
         private set;
     }
     public List<PlayerAbility> playerAbilities;
+    public PlayerAbility selectedAbility;
 
     public void SaveData(PlayerData pd)
     {

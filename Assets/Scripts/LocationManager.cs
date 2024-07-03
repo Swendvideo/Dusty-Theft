@@ -49,7 +49,7 @@ public class LocationManager : MonoBehaviour
     IEnumerator SpawnEnemies(Area area, int maxEnemies)
     {
         int difficultyCoin = GameManager.Instance.DataManager.GetEnemyCoinDependingOnDifficulty();
-        while((difficultyCoin > 0) || (enemies.Count < maxEnemies))
+        while((difficultyCoin > 0) && (enemies.Count < maxEnemies))
         {
             var availableEnemies = GameManager.Instance.EnemyTypes.Where(e => difficultyCoin >= e.DifficultyCost).ToArray();
             EnemyType randomEnemyType = availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count())];

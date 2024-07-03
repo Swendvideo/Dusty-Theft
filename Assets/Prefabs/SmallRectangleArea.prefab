@@ -1383,6 +1383,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8202841
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.040833563
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (4)
@@ -1453,6 +1461,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 3.939392
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.016225338
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle
@@ -1547,6 +1563,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 4.363841
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.00000047683716
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (3)
@@ -1617,6 +1641,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 7.915538
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.05404997
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
@@ -1711,6 +1743,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 11.399929
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.011711359
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
@@ -1805,6 +1845,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 4.3228188
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (5)

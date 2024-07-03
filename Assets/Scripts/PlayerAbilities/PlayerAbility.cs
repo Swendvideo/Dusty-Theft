@@ -12,18 +12,20 @@ public abstract class PlayerAbility : ScriptableObject
     public bool IsMouseBased;
     public float Range;
     public bool IsReady;
-    IEnumerator Cooldown()
+    public bool requirementsFulfilled = false;
+    public IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(abilityCooldown);
-        IsReady = true;
+        float timer = 0;
+        while(timer<=abilityCooldown)
+        {
+            GameManager.Instance.PlayerUI.UpdateAbilityIndicator(timer/abilityCooldown);
+            yield return null;
+            timer += Time.deltaTime;
+        }
+        GameManager.Instance.PlayerUI.UpdateAbilityIndicator(1);
     }
 
-    virtual public void Activate(Player player)
-    {
-        
-    }
-
-    abstract public void Activate(PointerEventData pointerEventData, Player player);
+    abstract public IEnumerator Activate(Player player);
 
     abstract public void RangeVisualLogic(Vector2 mousePosition, Vector2 playerPosition, RectangleGraphic rangeVisual);
 }

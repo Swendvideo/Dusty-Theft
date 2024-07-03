@@ -1383,9 +1383,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 4.4951944
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 4.6046977
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.006038904
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -1453,9 +1473,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 11.294624
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 11.410576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.013041496
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -1523,9 +1563,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 5.3590164
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 5.481946
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.017487407
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -1593,6 +1653,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7269506
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (4)
@@ -1663,6 +1731,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8603599
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (5)
@@ -1733,9 +1809,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1955268510358688474}
     m_Modifications:
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5998578
+      objectReference: {fileID: 0}
+    - target: {fileID: 955345098560324542, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4808884119071930251, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_Name
       value: Obstacle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5934017
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.019863248
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -1747,7 +1843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTiling
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5410033770959252539, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -1803,7 +1899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7492961320797100804, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_SpriteTileMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7492961320797100804, guid: a27b9426a4f26934bbb27a54acdb87e6, type: 3}
       propertyPath: m_AdaptiveModeThreshold

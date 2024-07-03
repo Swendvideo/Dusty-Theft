@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     public void Init()
     {
         Health = maxHealth;
-        playerAbility = GameManager.Instance.DataManager.playerAbilities[0];
+        playerAbility = GameManager.Instance.DataManager.selectedAbility;
+        playerAbility.IsReady = true;
     }
 
     void Update()
@@ -41,13 +42,18 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    playerAbility.Activate(this);
+                    StartCoroutine(playerAbility.Activate(this));
                 }
             }
         }
         if(rangeVisual.gameObject.activeInHierarchy)
         {
             playerAbility.RangeVisualLogic(Camera.main.ScreenToWorldPoint(Input.mousePosition),transform.position,rangeVisual);
+        }
+        if(Input.GetMouseButtonDown(0) && playerAbility.requirementsFulfilled && playerAbility.IsMouseBased && playerAbility.IsReady)
+        {
+            StartCoroutine(playerAbility.Activate(this));
+            TweakRangeVisual(playerAbility.Range,!rangeVisual.gameObject.activeInHierarchy);
         }
     }
 
