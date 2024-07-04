@@ -25,13 +25,18 @@ public class Player : MonoBehaviour
         Health = maxHealth;
         playerAbility = GameManager.Instance.DataManager.selectedAbility;
         playerAbility.IsReady = true;
+        playerAbility.requirementsFulfilled = false;
     }
 
+    void FixedUpdate()
+    {
+        float y = Input.GetAxis("Vertical");
+        float x = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector3(x, y,0)*Time.deltaTime*speed;
+    }
+    
     void Update()
     {
-        float y = Input.GetAxis("Vertical") * speed;
-        float x = Input.GetAxis("Horizontal")* speed;
-        rb.velocity = new Vector3(x, y,0)*Time.deltaTime*speed;
         if(Input.GetKeyDown(KeyCode.F))
         {
             if(playerAbility.IsReady)
@@ -92,6 +97,10 @@ public class Player : MonoBehaviour
     {
         rangeVisual.rectTransform.sizeDelta = new Vector2(range*2, range*2);
         rangeVisual.gameObject.SetActive(setActive);
+        if(!rangeVisual.gameObject.activeInHierarchy)
+        {
+            playerAbility.SetRequirementsFulfilled(false, rangeVisual);
+        }
     }
 
     IEnumerator Immunity()

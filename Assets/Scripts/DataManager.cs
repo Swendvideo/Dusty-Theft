@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -16,7 +17,10 @@ public class DataManager : MonoBehaviour
         get;
         private set;
     }
+    public int TreasureCostSumPerDifficulty;
+    public List<EnemyType> EnemyTypes;
     public List<PlayerAbility> playerAbilities;
+    public List<Treasure> treasures;
     public PlayerAbility selectedAbility;
 
     public void SaveData(PlayerData pd)
@@ -45,10 +49,24 @@ public class DataManager : MonoBehaviour
         Difficulty = difficulty;
     }
 
-    public int GetEnemyCoinDependingOnDifficulty()
+    public int GetEnemyCoinBasedOnDifficulty()
     {
         int enemyCoin = (int)math.round(0.5f*Difficulty +0.1f);
         return enemyCoin;
+    }
+
+    public List<Treasure> GetTreasuresBasedOnDifficulty()
+    {
+        float maxCostSum = Difficulty * TreasureCostSumPerDifficulty;
+        List<Treasure> suitableTreasures = new List<Treasure>();
+        while(maxCostSum > 0)
+        {
+            var randomCost = UnityEngine.Random.Range(1, maxCostSum);
+            var treasure = treasures.Where(t => t.cost <= randomCost).OrderByDescending(t => t.cost).First();
+            maxCostSum -= treasure.cost;
+            suitableTreasures.Add(treasure);
+        }
+        return suitableTreasures;
     }
 
     void Awake()

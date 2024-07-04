@@ -57,6 +57,8 @@ public class Assasin : Enemy
                 StopCoroutine(abilityCycle);
                 isAbilityCycleActive = false;
                 abilityCycle = null;
+                rb.velocity = Vector2.zero;
+                rb.totalForce = Vector2.zero;
             }
             navMeshAgent.isStopped = false;
             base.OnTriggerExit2D(other);
@@ -72,7 +74,6 @@ public class Assasin : Enemy
         leapIndicator.gameObject.SetActive(true);
         colorChanging.Rewind(false);
         colorChanging.Play();
-        Debug.Log(colorChanging.IsComplete());
     }
 
     void DeactivateIndicator()
@@ -91,13 +92,13 @@ public class Assasin : Enemy
             ActivateAbility();
             yield return new WaitForSeconds(0.5f);
             rb.velocity = Vector2.zero;
+            Debug.Log("Stop");
         }
     }
 
     public override void ActivateAbility()
     {
         rb.AddForce((playerTransform.position-transform.position).normalized * leapPower, ForceMode2D.Impulse);
-
     }
 
 

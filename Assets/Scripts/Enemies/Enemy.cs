@@ -9,9 +9,10 @@ using UnityEngine.AI;
 [Serializable]
 public class EnemyType
 {
-    public string name;
+    public string Name;
     public Enemy EnemyPrefab;
     public int DifficultyCost;
+    public bool CanSpawn = true;
 }
 
 public abstract class Enemy : MonoBehaviour

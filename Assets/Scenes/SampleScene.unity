@@ -3518,8 +3518,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c6d50e456280c4085b13413c763f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TreasureCostSumPerDifficulty: 5
+  EnemyTypes:
+  - Name: Warrior
+    EnemyPrefab: {fileID: 231883683673382101, guid: 445a254f6c185204ca1ce576ea458d8a, type: 3}
+    DifficultyCost: 1
+    CanSpawn: 0
+  - Name: Archer
+    EnemyPrefab: {fileID: 5544521900637442304, guid: 2d872862f06828649a90e3ee280914f9, type: 3}
+    DifficultyCost: 1
+    CanSpawn: 1
+  - Name: Assasin
+    EnemyPrefab: {fileID: -5201120703984520619, guid: e58742390aec710449a0d21a086edd08, type: 3}
+    DifficultyCost: 2
+    CanSpawn: 0
   playerAbilities:
   - {fileID: 11400000, guid: cd03d0b41525abb4fbfd8a39098a4f94, type: 2}
+  treasures:
+  - {fileID: 2468979970411468292, guid: d6292d5d485f0c542bc32bba57de7ee3, type: 3}
+  - {fileID: 2468979970411468292, guid: a35857814600ddb468078b4662e1fe51, type: 3}
+  - {fileID: 2468979970411468292, guid: 79d3accc90be21b458ed2d08e25f1e91, type: 3}
   selectedAbility: {fileID: 11400000, guid: cd03d0b41525abb4fbfd8a39098a4f94, type: 2}
 --- !u!4 &1627585637
 Transform:
@@ -3736,16 +3754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb9f184e65a934488891abfcc092df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTypes:
-  - name: Warrior
-    EnemyPrefab: {fileID: 231883683673382101, guid: 445a254f6c185204ca1ce576ea458d8a, type: 3}
-    DifficultyCost: 1
-  - name: Archer
-    EnemyPrefab: {fileID: 5544521900637442304, guid: 2d872862f06828649a90e3ee280914f9, type: 3}
-    DifficultyCost: 1
-  - name: Assasin
-    EnemyPrefab: {fileID: -5201120703984520619, guid: e58742390aec710449a0d21a086edd08, type: 3}
-    DifficultyCost: 2
   LocationManager: {fileID: 2110678765}
   DataManager: {fileID: 1627585636}
   PlayerUI: {fileID: 1413537219}

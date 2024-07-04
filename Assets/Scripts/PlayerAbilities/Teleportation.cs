@@ -8,8 +8,6 @@ using UnityEngine.EventSystems;
 [CreateAssetMenu]
 public class Teleportation : PlayerAbility 
 {
-    [SerializeField] Color rangeVisualGreen;
-    [SerializeField] Color rangeVisualRed;
     public override IEnumerator Activate(Player player)
     {
         if(requirementsFulfilled)
@@ -28,13 +26,11 @@ public class Teleportation : PlayerAbility
         {
             if(hit.transform.CompareTag("GameFloor") && ((mousePosition - playerPosition).magnitude < Range))
             {
-                rangeVisual.color = rangeVisualGreen;
-                requirementsFulfilled = true;
+                SetRequirementsFulfilled(true, rangeVisual);
             }
             else
             {
-                rangeVisual.color = rangeVisualRed;
-                requirementsFulfilled = false;
+                SetRequirementsFulfilled(false, rangeVisual);
             }
         }
     }

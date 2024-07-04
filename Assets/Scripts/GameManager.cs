@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<EnemyType> EnemyTypes;
     public LocationManager LocationManager;
     public DataManager DataManager;
     public PlayerUI PlayerUI;
@@ -17,6 +16,14 @@ public class GameManager : MonoBehaviour
         private set;
     }
     public Transform menu;
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 
     public void StartGame()
     {

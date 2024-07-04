@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NavMeshPlus.Components;
 using UnityEngine;
+using UnityEngine.AI;
 
 [Serializable]
 public class Location
@@ -23,7 +24,13 @@ public class LocationManager : MonoBehaviour
     [SerializeField] Player playerPrefab;
     List<Enemy> enemies = new List<Enemy>();
     public Area activeArea;
-    
+    private List<Treasure> treasuresCollected = new List<Treasure>();
+    public void AddTreasure(Treasure treasure)
+    {
+        treasuresCollected.Add(treasure);
+        Debug.Log(treasuresCollected.Count);
+    }
+
     public void AreaCleared()
     {
         sceneCompleted = true;
@@ -39,21 +46,33 @@ public class LocationManager : MonoBehaviour
         loadScreen.SetBool("IsLoading", false);
     }
 
-    Vector3 GetRandomPointInBound(Bounds bounds)
+    Vector3 GetRandomPointInBoundOnNavMesh(Bounds bounds)
     {
+        NavMeshHit hit;
         var x = UnityEngine.Random.Range(bounds.min.x,bounds.max.x);
-        var y = UnityEngine.Random.Range(bounds.min.y,bounds.max.y); 
-        return new Vector3(x,y,0);
+        var y = UnityEngine.Random.Range(bounds.min.y,bounds.max.y);
+        NavMesh.SamplePosition(new Vector3(x,y,0) , out hit, 100f, NavMesh.AllAreas);
+        return hit.position;
+    }
+
+    IEnumerator SpawnTreasures(Area area)
+    {
+        List<Treasure> treasures = GameManager.Instance.DataManager.GetTreasuresBasedOnDifficulty();
+        foreach(Treasure treasure in treasures)
+        {
+            var t = Instantiate(treasure,GetRandomPointInBoundOnNavMesh(area.enemySpawnArea.bounds),new Quaternion());
+            yield return new WaitUntil(() => t.isActiveAndEnabled);
+        }
     }
 
     IEnumerator SpawnEnemies(Area area, int maxEnemies)
     {
-        int difficultyCoin = GameManager.Instance.DataManager.GetEnemyCoinDependingOnDifficulty();
+        int difficultyCoin = GameManager.Instance.DataManager.GetEnemyCoinBasedOnDifficulty();
         while((difficultyCoin > 0) && (enemies.Count < maxEnemies))
         {
-            var availableEnemies = GameManager.Instance.EnemyTypes.Where(e => difficultyCoin >= e.DifficultyCost).ToArray();
+            var availableEnemies = GameManager.Instance.DataManager.EnemyTypes.Where(e => (difficultyCoin >= e.DifficultyCost) && e.CanSpawn).ToArray();
             EnemyType randomEnemyType = availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count())];
-            var e = Instantiate(randomEnemyType.EnemyPrefab,GetRandomPointInBound(area.enemySpawnArea.bounds), new Quaternion());
+            var e = Instantiate(randomEnemyType.EnemyPrefab,GetRandomPointInBoundOnNavMesh(area.enemySpawnArea.bounds), new Quaternion());
             e.Init();
             enemies.Add(e);
             difficultyCoin -= randomEnemyType.DifficultyCost;
@@ -121,6 +140,7 @@ public class LocationManager : MonoBehaviour
             GameManager.Instance.PlayerCamera.SetTarget(player.transform);
             yield return null;
             yield return SpawnEnemies(loc, randomLocation.maxEnemies);
+            yield return SpawnTreasures(loc);
             isSceneActive = true;
             player.gameObject.SetActive(true);
             DisableLoadingScreen();

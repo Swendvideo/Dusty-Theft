@@ -13,6 +13,8 @@ public abstract class PlayerAbility : ScriptableObject
     public float Range;
     public bool IsReady;
     public bool requirementsFulfilled = false;
+    public Color rangeVisualGreen;
+    public Color rangeVisualRed;
     public IEnumerator Cooldown()
     {
         float timer = 0;
@@ -23,6 +25,20 @@ public abstract class PlayerAbility : ScriptableObject
             timer += Time.deltaTime;
         }
         GameManager.Instance.PlayerUI.UpdateAbilityIndicator(1);
+    }
+
+    public void SetRequirementsFulfilled(bool isFulfilled, RectangleGraphic rangeVisual)
+    {
+        if(isFulfilled)
+        {
+            rangeVisual.color = rangeVisualGreen;
+            requirementsFulfilled = true;
+        }
+        else
+        {
+            rangeVisual.color = rangeVisualRed;
+            requirementsFulfilled = false;
+        }
     }
 
     abstract public IEnumerator Activate(Player player);
