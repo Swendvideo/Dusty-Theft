@@ -18,7 +18,8 @@ public class LocationManager : MonoBehaviour
     private GameObject activeLocation;
     private bool isSceneActive;
     private bool sceneCompleted;
-    [SerializeField] List<Location> Locations;
+    [SerializeField] List<Location> locations;
+    [SerializeField] Location treasureRoom;
     [SerializeField] NavMeshSurface navMeshSurface;
     [SerializeField] Animator loadScreen;
     [SerializeField] Player playerPrefab;
@@ -46,6 +47,11 @@ public class LocationManager : MonoBehaviour
         loadScreen.SetBool("IsLoading", false);
     }
 
+    public void Escape()
+    {
+        
+    }
+
     Vector3 GetRandomPointInBoundOnNavMesh(Bounds bounds)
     {
         NavMeshHit hit;
@@ -55,12 +61,12 @@ public class LocationManager : MonoBehaviour
         return hit.position;
     }
 
-    IEnumerator SpawnTreasures(Area area)
+    IEnumerator SpawnTreasures(Area area, float costMultiplier)
     {
-        List<Treasure> treasures = GameManager.Instance.DataManager.GetTreasuresBasedOnDifficulty();
+        List<Treasure> treasures = GameManager.Instance.DataManager.GetTreasuresBasedOnDifficulty(costMultiplier);
         foreach(Treasure treasure in treasures)
         {
-            var t = Instantiate(treasure,GetRandomPointInBoundOnNavMesh(area.enemySpawnArea.bounds),new Quaternion());
+            var t = Instantiate(treasure,GetRandomPointInBoundOnNavMesh(area.enemySpawnArea.bounds),new Quaternion(), area.transform);
             yield return new WaitUntil(() => t.isActiveAndEnabled);
         }
     }
@@ -105,6 +111,7 @@ public class LocationManager : MonoBehaviour
             enemy.StopAllCoroutines();
             Destroy(enemy.gameObject);
         }
+        
         Destroy(activeArea.gameObject);
         enemies.Clear();
     }
@@ -115,6 +122,7 @@ public class LocationManager : MonoBehaviour
         Player player = Instantiate(playerPrefab);
         player.Init();
         player.gameObject.SetActive(false);
+        GameManager.Instance.PlayerCamera.SetTarget(player.transform);
         while(locationCost > 0)
         {
             ActivateLoadingScreen();
@@ -126,21 +134,16 @@ public class LocationManager : MonoBehaviour
             }
             yield return null;
             GameManager.Instance.menu.gameObject.SetActive(false);
-            var AvailableLocations = Locations.Where(l => locationCost - l.DifficultyCost >= 0);
+            var AvailableLocations = locations.Where(l => locationCost - l.DifficultyCost >= 0);
             Location randomLocation = AvailableLocations.ElementAt(UnityEngine.Random.Range(0,AvailableLocations.Count()));
             locationCost -= randomLocation.DifficultyCost;
-            if (isSceneActive)
-            {
-                Destroy(activeLocation);
-            }
             var loc = Instantiate(randomLocation.Area);
             activeArea = loc;
             navMeshSurface.BuildNavMeshAsync();
             player.transform.position = loc.spawnPoint.position;
-            GameManager.Instance.PlayerCamera.SetTarget(player.transform);
             yield return null;
             yield return SpawnEnemies(loc, randomLocation.maxEnemies);
-            yield return SpawnTreasures(loc);
+            yield return SpawnTreasures(loc, 1);
             isSceneActive = true;
             player.gameObject.SetActive(true);
             DisableLoadingScreen();
@@ -148,5 +151,18 @@ public class LocationManager : MonoBehaviour
             sceneCompleted = false;
             yield return new WaitUntil(() => sceneCompleted);
         }
+        ActivateLoadingScreen();
+        yield return new WaitForSeconds(0.3f);
+        DestroyEnemiesAndArea();
+        var finalArea = Instantiate(treasureRoom.Area);
+        navMeshSurface.BuildNavMeshAsync();
+        activeArea = finalArea;
+        player.transform.position = finalArea.spawnPoint.position;
+        yield return null;
+        yield return SpawnTreasures(finalArea,3);
+        player.gameObject.SetActive(true);
+        DisableLoadingScreen();
+
+
     }
 }

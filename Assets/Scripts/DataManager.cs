@@ -55,9 +55,9 @@ public class DataManager : MonoBehaviour
         return enemyCoin;
     }
 
-    public List<Treasure> GetTreasuresBasedOnDifficulty()
+    public List<Treasure> GetTreasuresBasedOnDifficulty(float costMultiplier)
     {
-        float maxCostSum = Difficulty * TreasureCostSumPerDifficulty;
+        float maxCostSum = Difficulty * TreasureCostSumPerDifficulty *costMultiplier;
         List<Treasure> suitableTreasures = new List<Treasure>();
         while(maxCostSum > 0)
         {

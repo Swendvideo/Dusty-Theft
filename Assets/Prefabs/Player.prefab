@@ -134,6 +134,7 @@ MonoBehaviour:
   rangeVisual: {fileID: 3923951436062149222}
   maxHealth: 3
   immunityDuration: 2
+  timeToEscape: 4
   animator: {fileID: 1946022838263458133}
   playerAbility: {fileID: 0}
 --- !u!58 &4551426360751245333

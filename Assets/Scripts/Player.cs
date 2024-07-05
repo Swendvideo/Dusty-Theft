@@ -10,11 +10,20 @@ public class Player : MonoBehaviour
     [SerializeField] RectangleGraphic rangeVisual;
     [SerializeField] float maxHealth;
     [SerializeField] float immunityDuration;
+    [SerializeField] float timeToEscape;
     [SerializeField] Animator animator;
     [SerializeField] PlayerAbility playerAbility;
     bool isImmune = false;
+
     bool isRangeVisualActive;
+    private float escapeTimer;
+    private bool hasEscaped = false;
     public float Health
+    {
+        get;
+        private set;
+    }
+    public float SpeedModifier
     {
         get;
         private set;
@@ -32,7 +41,7 @@ public class Player : MonoBehaviour
     {
         float y = Input.GetAxis("Vertical");
         float x = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector3(x, y,0)*Time.deltaTime*speed;
+        rb.velocity = new Vector3(x, y,0)*Time.deltaTime*speed*SpeedModifier;
     }
     
     void Update()
@@ -60,6 +69,22 @@ public class Player : MonoBehaviour
             StartCoroutine(playerAbility.Activate(this));
             TweakRangeVisual(playerAbility.Range,!rangeVisual.gameObject.activeInHierarchy);
         }
+        if(Input.GetKey(KeyCode.R))
+        {
+            escapeTimer += Time.deltaTime;
+            if(escapeTimer >= timeToEscape && hasEscaped == false)
+            {
+                hasEscaped = true;
+                GameManager.Instance.LocationManager.Escape();
+            }
+            SetSpeedModifier(0.5f);
+        }
+        else
+        {
+            SetSpeedModifier(1f);
+            escapeTimer = 0;
+        }
+        GameManager.Instance.PlayerUI.UpdateEscapeIndicator(escapeTimer/timeToEscape);
     }
 
     void TakeDamage(float damage)
@@ -75,6 +100,11 @@ public class Player : MonoBehaviour
             }
             StartCoroutine(Immunity());
         }
+    }
+
+    void SetSpeedModifier(float value)
+    {
+        SpeedModifier = value;
     }
 
     void OnCollisionEnter2D(Collision2D other)

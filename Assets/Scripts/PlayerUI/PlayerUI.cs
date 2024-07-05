@@ -8,6 +8,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Transform halfHeart;
     [SerializeField] PlayerAbilityUI playerAbilityUI;
     [SerializeField] PlayerHealthUI playerHealthUI;
+    [SerializeField] PlayerEscapeUI playerEscapeIndicatorUI;
 
     public void UpdateHealthIndicator(float health)
     { 
@@ -17,5 +18,10 @@ public class PlayerUI : MonoBehaviour
     public void UpdateAbilityIndicator(float fillAmount)
     {
         playerAbilityUI.UpdateAbilityIndicator(fillAmount);
+    }
+
+    public void UpdateEscapeIndicator(float fillAmount)
+    {
+        playerEscapeIndicatorUI.UpdateEscapeIndicator(fillAmount);
     }
 }
