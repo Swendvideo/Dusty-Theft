@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
             SetSpeedModifier(1f);
             escapeTimer = 0;
         }
-        GameManager.Instance.PlayerUI.UpdateEscapeIndicator(escapeTimer/timeToEscape);
+        GameManager.Instance.UIManager.PlayerUI.UpdateEscapeIndicator(escapeTimer/timeToEscape);
     }
 
     void TakeDamage(float damage)
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         {
             Health -= damage;
             Debug.Log(Health);
-            GameManager.Instance.PlayerUI.UpdateHealthIndicator(Health);
+            GameManager.Instance.UIManager.PlayerUI.UpdateHealthIndicator(Health);
             if (Health <= 0)
             {
                 GameManager.Instance.Death();

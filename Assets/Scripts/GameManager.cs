@@ -8,14 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public LocationManager LocationManager;
     public DataManager DataManager;
-    public PlayerUI PlayerUI;
+    public UIManager UIManager;
     public CameraFollow PlayerCamera;
     public static GameManager Instance
     {
         get;
         private set;
     }
-    public Transform menu;
 
     void Update()
     {

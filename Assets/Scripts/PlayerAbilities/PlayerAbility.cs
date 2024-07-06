@@ -20,11 +20,11 @@ public abstract class PlayerAbility : ScriptableObject
         float timer = 0;
         while(timer<=abilityCooldown)
         {
-            GameManager.Instance.PlayerUI.UpdateAbilityIndicator(timer/abilityCooldown);
+            GameManager.Instance.UIManager.PlayerUI.UpdateAbilityIndicator(timer/abilityCooldown);
             yield return null;
             timer += Time.deltaTime;
         }
-        GameManager.Instance.PlayerUI.UpdateAbilityIndicator(1);
+        GameManager.Instance.UIManager.PlayerUI.UpdateAbilityIndicator(1);
     }
 
     public void SetRequirementsFulfilled(bool isFulfilled, RectangleGraphic rangeVisual)

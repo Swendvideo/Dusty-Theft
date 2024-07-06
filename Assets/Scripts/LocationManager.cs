@@ -15,16 +15,18 @@ public class Location
 }
 public class LocationManager : MonoBehaviour
 {
-    private GameObject activeLocation;
-    private bool isSceneActive;
-    private bool sceneCompleted;
     [SerializeField] List<Location> locations;
     [SerializeField] Location treasureRoom;
     [SerializeField] NavMeshSurface navMeshSurface;
     [SerializeField] Animator loadScreen;
     [SerializeField] Player playerPrefab;
-    List<Enemy> enemies = new List<Enemy>();
     public Area activeArea;
+    Player player;
+    private GameObject activeLocation;
+    private bool isSceneActive;
+    private bool sceneCompleted;
+    private float startTime;
+    List<Enemy> enemies = new List<Enemy>();
     private List<Treasure> treasuresCollected = new List<Treasure>();
     public void AddTreasure(Treasure treasure)
     {
@@ -49,7 +51,14 @@ public class LocationManager : MonoBehaviour
 
     public void Escape()
     {
-        
+       EndGame("Сбежал", false);
+    }
+    
+    public void EndGame(string headline, bool isDead)
+    {
+        GameManager.Instance.UIManager.EndGame(headline,Time.realtimeSinceStartup - startTime, treasuresCollected.Count, (int)treasuresCollected.Sum(t => t.cost));
+        DestroyEnemiesAndArea();
+        Destroy(player);
     }
 
     Vector3 GetRandomPointInBoundOnNavMesh(Bounds bounds)
@@ -119,21 +128,22 @@ public class LocationManager : MonoBehaviour
     {
         loadScreen.gameObject.SetActive(true);
         int locationCost = GameManager.Instance.DataManager.Difficulty;
-        Player player = Instantiate(playerPrefab);
+        player = Instantiate(playerPrefab);
         player.Init();
         player.gameObject.SetActive(false);
         GameManager.Instance.PlayerCamera.SetTarget(player.transform);
+        startTime = Time.realtimeSinceStartup;
         while(locationCost > 0)
         {
             ActivateLoadingScreen();
             yield return new WaitForSeconds(0.3f);
-            GameManager.Instance.PlayerUI.UpdateHealthIndicator(player.Health);
+            GameManager.Instance.UIManager.PlayerUI.UpdateHealthIndicator(player.Health);
             if(activeArea != null)
             {
                 DestroyEnemiesAndArea();
             }
             yield return null;
-            GameManager.Instance.menu.gameObject.SetActive(false);
+            GameManager.Instance.UIManager.Menu.gameObject.SetActive(false);
             var AvailableLocations = locations.Where(l => locationCost - l.DifficultyCost >= 0);
             Location randomLocation = AvailableLocations.ElementAt(UnityEngine.Random.Range(0,AvailableLocations.Count()));
             locationCost -= randomLocation.DifficultyCost;
