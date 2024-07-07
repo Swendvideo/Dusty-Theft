@@ -89,10 +89,10 @@ public class Assasin : Enemy
             ActivateIndicator();
             yield return new WaitForSeconds(abilityCooldown);
             leapIndicator.color = leapIndicatorColorBeginning;
+            rb.WakeUp();
             ActivateAbility();
             yield return new WaitForSeconds(0.5f);
-            rb.velocity = Vector2.zero;
-            Debug.Log("Stop");
+            rb.Sleep();
         }
     }
 

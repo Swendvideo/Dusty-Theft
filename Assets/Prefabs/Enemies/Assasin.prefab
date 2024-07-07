@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6302802766383488960}
   - component: {fileID: 7914861721849948068}
   - component: {fileID: -5201120703984520619}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Assasin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &-5201120703984520619
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 834864507757334550}
   - component: {fileID: 4617642690095277018}
   - component: {fileID: 695222933471934737}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: LeapIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 3870740687773018393}
   - component: {fileID: 2643700964436929351}
   - component: {fileID: 2715884273558201237}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd60c72bd313784a8ce2789b9f9f422, type: 3}
+  m_Name: Dash
+  m_EditorClassIdentifier: 
+  abilityName: Dash
+  sprite: {fileID: 21300000, guid: fa557b89ecf3d44f2b6cae783ce09806, type: 3}
+  abilityCooldown: 1.5
+  IsMouseBased: 0
+  Range: 0
+  IsReady: 1
+  requirementsFulfilled: 0
+  rangeVisualGreen: {r: 0, g: 0, b: 0, a: 0}
+  rangeVisualRed: {r: 0, g: 0, b: 0, a: 0}
+  dashPower: 5

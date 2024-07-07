@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3507901831375564284}
   - component: {fileID: 6302802766383488960}
   - component: {fileID: 231883683673382101}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Warriror
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

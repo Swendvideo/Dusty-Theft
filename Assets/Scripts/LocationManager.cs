@@ -22,8 +22,6 @@ public class LocationManager : MonoBehaviour
     [SerializeField] Player playerPrefab;
     public Area activeArea;
     Player player;
-    private GameObject activeLocation;
-    private bool isSceneActive;
     private bool sceneCompleted;
     private float startTime;
     List<Enemy> enemies = new List<Enemy>();
@@ -56,9 +54,14 @@ public class LocationManager : MonoBehaviour
     
     public void EndGame(string headline, bool isDead)
     {
-        GameManager.Instance.UIManager.EndGame(headline,Time.realtimeSinceStartup - startTime, treasuresCollected.Count, (int)treasuresCollected.Sum(t => t.cost));
+        int revenue = (int)treasuresCollected.Sum(t => t.cost);
+        if (!isDead)
+        {
+            GameManager.Instance.DataManager.AddMoney(revenue);
+        }
+        GameManager.Instance.UIManager.EndGame(headline,Time.realtimeSinceStartup - startTime, treasuresCollected.Count, revenue);
         DestroyEnemiesAndArea();
-        Destroy(player);
+        Destroy(player.gameObject);
     }
 
     Vector3 GetRandomPointInBoundOnNavMesh(Bounds bounds)
@@ -114,14 +117,14 @@ public class LocationManager : MonoBehaviour
     }
     void DestroyEnemiesAndArea()
     {
-        Debug.Log("TTT");
         foreach(Enemy enemy in enemies)
         {
             enemy.StopAllCoroutines();
             Destroy(enemy.gameObject);
         }
-        
+        Debug.Log(activeArea == null);
         Destroy(activeArea.gameObject);
+        activeArea = null;
         enemies.Clear();
     }
     public IEnumerator GameProcess()
@@ -154,7 +157,6 @@ public class LocationManager : MonoBehaviour
             yield return null;
             yield return SpawnEnemies(loc, randomLocation.maxEnemies);
             yield return SpawnTreasures(loc, 1);
-            isSceneActive = true;
             player.gameObject.SetActive(true);
             DisableLoadingScreen();
             ActivateEnemies();

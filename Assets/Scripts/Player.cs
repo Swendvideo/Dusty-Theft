@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField] public Rigidbody2D rb;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] RectangleGraphic rangeVisual;
     [SerializeField] float maxHealth;
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     bool isImmune = false;
 
     bool isRangeVisualActive;
+    bool isRKeyPressed = false;
     private float escapeTimer;
     private bool hasEscaped = false;
     public float Health
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
         playerAbility = GameManager.Instance.DataManager.selectedAbility;
         playerAbility.IsReady = true;
         playerAbility.requirementsFulfilled = false;
+        SpeedModifier = 1;
     }
 
     void FixedUpdate()
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             if(playerAbility.IsReady)
             {
@@ -77,12 +79,17 @@ public class Player : MonoBehaviour
                 hasEscaped = true;
                 GameManager.Instance.LocationManager.Escape();
             }
-            SetSpeedModifier(0.5f);
+            if(!isRKeyPressed)
+            {
+                SetSpeedModifier(SpeedModifier/2);
+                isRKeyPressed = true;
+            }
         }
-        else
+        else if(isRKeyPressed)
         {
-            SetSpeedModifier(1f);
+            SetSpeedModifier(SpeedModifier*2);
             escapeTimer = 0;
+            isRKeyPressed = false;
         }
         GameManager.Instance.UIManager.PlayerUI.UpdateEscapeIndicator(escapeTimer/timeToEscape);
     }
@@ -102,7 +109,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void SetSpeedModifier(float value)
+    public void SetSpeedModifier(float value)
     {
         SpeedModifier = value;
     }
@@ -136,8 +143,10 @@ public class Player : MonoBehaviour
     IEnumerator Immunity()
     {
         isImmune = true;
-        animator.SetBool("IsImmune", true);        
+        animator.SetBool("IsImmune", true);
+        //Physics2D.IgnoreLayerCollision(7,8, true);        
         yield return new WaitForSeconds(immunityDuration);
+        //Physics2D.IgnoreLayerCollision(7,8, false);
         animator.SetBool("IsImmune", false);
         isImmune = false;
     }

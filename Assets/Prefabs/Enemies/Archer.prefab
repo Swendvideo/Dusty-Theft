@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4869770917676167105}
   - component: {fileID: 3507901831375564284}
   - component: {fileID: 6302802766383488960}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}

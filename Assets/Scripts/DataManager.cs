@@ -23,6 +23,11 @@ public class DataManager : MonoBehaviour
     public List<Treasure> treasures;
     public PlayerAbility selectedAbility;
 
+    public void AddMoney(int money)
+    {
+        Money += money;
+    }
+
     public void SaveData(PlayerData pd)
     {
         string data = JsonUtility.ToJson(pd);

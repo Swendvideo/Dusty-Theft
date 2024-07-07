@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,10 +22,10 @@ public class Teleportation : PlayerAbility
 
     public override void RangeVisualLogic(Vector2 mousePosition, Vector2 playerPosition, RectangleGraphic rangeVisual)
     {
-        var hit = Physics2D.Raycast(mousePosition,Vector2.zero);
-        if (hit.transform != null)
+        var hits = Physics2D.RaycastAll(mousePosition,Vector2.zero);
+        if (hits != null)
         {
-            if(hit.transform.CompareTag("GameFloor") && ((mousePosition - playerPosition).magnitude < Range))
+            if(hits.Any(h => h.transform.CompareTag("GameFloor")) && !hits.Any(h => h.transform.CompareTag("Wall")) && ((mousePosition - playerPosition).magnitude < Range))
             {
                 SetRequirementsFulfilled(true, rangeVisual);
             }
