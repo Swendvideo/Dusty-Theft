@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Dash : PlayerAbility
+public class Sprint : PlayerAbility
 {
-    [SerializeField] float dashPower;
+    [SerializeField] float sprintPower;
+    [SerializeField] float sprintDuration;
     public override IEnumerator Activate(Player player)
     {
-        Physics2D.IgnoreLayerCollision(7,8, true);
-        player.SetSpeedModifier(player.SpeedModifier*dashPower);
-        yield return new WaitForSeconds(0.1f);
-        player.SetSpeedModifier(player.SpeedModifier/dashPower);
-        Physics2D.IgnoreLayerCollision(7,8, false);
+        player.SetSpeedModifier(player.SpeedModifier*sprintPower);
+        yield return new WaitForSeconds(sprintDuration);
+        player.SetSpeedModifier(player.SpeedModifier/sprintPower);
         IsReady = false;
         yield return Cooldown();
         IsReady = true;

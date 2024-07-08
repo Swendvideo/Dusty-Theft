@@ -27,6 +27,10 @@ public class PlayerUI : MonoBehaviour
 
     public void HideAbilityIndicator(bool hide)
     {
-        playerAbilityUI.gameObject.SetActive(!hide);
+        playerAbilityUI.gameObject.SetActive(!hide);   
+    }
+    public void SetAbilityIcon(Sprite icon)
+    {
+        playerAbilityUI.SetAbilityIcon(icon);
     }
 }

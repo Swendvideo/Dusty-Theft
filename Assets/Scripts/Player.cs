@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
         {
             playerAbility = GameManager.Instance.DataManager.selectedAbility;
             GameManager.Instance.UIManager.PlayerUI.HideAbilityIndicator(false);
+            GameManager.Instance.UIManager.PlayerUI.SetAbilityIcon(playerAbility.sprite);
             playerAbility.IsReady = true;
             playerAbility.requirementsFulfilled = false;
         }

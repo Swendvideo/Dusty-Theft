@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Application.targetFrameRate = 60;
     }
 
     public void Death()

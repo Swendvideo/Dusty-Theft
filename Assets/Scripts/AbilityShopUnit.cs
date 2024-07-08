@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class AbilityShopUnit : MonoBehaviour, IPointerClickHandler
+public class AbilityShopUnit : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
     [SerializeField] RectangleGraphic icon;
     [SerializeField] TMP_Text priceText;
@@ -13,6 +13,7 @@ public class AbilityShopUnit : MonoBehaviour, IPointerClickHandler
     PlayerAbility playerAbility;
     public event Action<PlayerAbility> OnPurchase;
     public event Action ReloadShop;
+    public event Action<string> ShowDescription;
 
     public void Init(PlayerAbility playerAbility, bool isPurchasable)
     {
@@ -49,6 +50,10 @@ public class AbilityShopUnit : MonoBehaviour, IPointerClickHandler
             priceText.text = "Куплено";
             isPurchasable = false;
         }
-        Debug.Log("WEEEWOOOWEEEWOOO");
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ShowDescription.Invoke(playerAbility.abilityDescription);
     }
 }

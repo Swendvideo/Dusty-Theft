@@ -53,7 +53,14 @@ public class DataManager : MonoBehaviour
     private void Start()
     {
         PlayerData playerData = LoadData();
-        PurchasedPlayerAbilities = playerData.PurchasedPlayerAbilities;
+        if(playerData.PurchasedPlayerAbilities == null)
+        {
+            PurchasedPlayerAbilities = new List<PlayerAbility>();
+        }
+        else
+        {
+            PurchasedPlayerAbilities = playerData.PurchasedPlayerAbilities;
+        }
         Money = playerData.money;
         GameManager.Instance.UIManager.UpdateMoneyIndicator();
     }

@@ -67,6 +67,7 @@ public class LocationManager : MonoBehaviour
         GameManager.Instance.UIManager.EndGame(headline,Time.realtimeSinceStartup - startTime, treasuresCollected.Count, revenue);
         DestroyEnemiesAndArea();
         Destroy(player.gameObject);
+        treasuresCollected.Clear();
     }
 
     Vector3 GetRandomPointInBoundOnNavMesh(Bounds bounds)

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public abstract class PlayerAbility : ScriptableObject
 {
     public string abilityName;
+    public string abilityDescription;
     public Sprite sprite;
     public float abilityCooldown;
     public bool IsMouseBased;
