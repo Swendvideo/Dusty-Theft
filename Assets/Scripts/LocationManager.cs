@@ -5,6 +5,7 @@ using System.Linq;
 using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 [Serializable]
 public class Location
@@ -51,9 +52,15 @@ public class LocationManager : MonoBehaviour
     {
        EndGame("Сбежал", false);
     }
+
+    public void Death()
+    {
+        EndGame("Убит", true);
+    }
     
     public void EndGame(string headline, bool isDead)
     {
+        StopAllCoroutines();
         int revenue = (int)treasuresCollected.Sum(t => t.cost);
         if (!isDead)
         {
@@ -73,6 +80,11 @@ public class LocationManager : MonoBehaviour
         return hit.position;
     }
 
+    public void StartProcess()
+    {
+        StartCoroutine(GameProcess());
+    }
+
     IEnumerator SpawnTreasures(Area area, float costMultiplier)
     {
         List<Treasure> treasures = GameManager.Instance.DataManager.GetTreasuresBasedOnDifficulty(costMultiplier);
@@ -83,6 +95,7 @@ public class LocationManager : MonoBehaviour
         }
     }
 
+    
     IEnumerator SpawnEnemies(Area area, int maxEnemies)
     {
         int difficultyCoin = GameManager.Instance.DataManager.GetEnemyCoinBasedOnDifficulty();
@@ -174,7 +187,5 @@ public class LocationManager : MonoBehaviour
         yield return SpawnTreasures(finalArea,3);
         player.gameObject.SetActive(true);
         DisableLoadingScreen();
-
-
     }
 }

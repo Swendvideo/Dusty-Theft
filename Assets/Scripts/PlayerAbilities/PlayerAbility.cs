@@ -15,6 +15,7 @@ public abstract class PlayerAbility : ScriptableObject
     public bool requirementsFulfilled = false;
     public Color rangeVisualGreen;
     public Color rangeVisualRed;
+    public int priceInShop;
     public IEnumerator Cooldown()
     {
         float timer = 0;

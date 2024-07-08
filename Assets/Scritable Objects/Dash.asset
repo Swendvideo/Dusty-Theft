@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   abilityName: Dash
-  sprite: {fileID: 21300000, guid: fa557b89ecf3d44f2b6cae783ce09806, type: 3}
+  sprite: {fileID: 21300000, guid: 69663e4f805be64428c1c4de79de705b, type: 3}
   abilityCooldown: 1.5
   IsMouseBased: 0
   Range: 0
@@ -21,4 +21,5 @@ MonoBehaviour:
   requirementsFulfilled: 0
   rangeVisualGreen: {r: 0, g: 0, b: 0, a: 0}
   rangeVisualRed: {r: 0, g: 0, b: 0, a: 0}
+  priceInShop: 100
   dashPower: 5

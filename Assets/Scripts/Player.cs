@@ -33,9 +33,17 @@ public class Player : MonoBehaviour
     public void Init()
     {
         Health = maxHealth;
-        playerAbility = GameManager.Instance.DataManager.selectedAbility;
-        playerAbility.IsReady = true;
-        playerAbility.requirementsFulfilled = false;
+        if(GameManager.Instance.DataManager.selectedAbility == null)
+        {
+            GameManager.Instance.UIManager.PlayerUI.HideAbilityIndicator(true);
+        }
+        else
+        {
+            playerAbility = GameManager.Instance.DataManager.selectedAbility;
+            GameManager.Instance.UIManager.PlayerUI.HideAbilityIndicator(false);
+            playerAbility.IsReady = true;
+            playerAbility.requirementsFulfilled = false;
+        }
         SpeedModifier = 1;
     }
 
@@ -48,7 +56,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && (playerAbility != null))
         {
             if(playerAbility.IsReady)
             {
@@ -66,10 +74,13 @@ public class Player : MonoBehaviour
         {
             playerAbility.RangeVisualLogic(Camera.main.ScreenToWorldPoint(Input.mousePosition),transform.position,rangeVisual);
         }
-        if(Input.GetMouseButtonDown(0) && playerAbility.requirementsFulfilled && playerAbility.IsMouseBased && playerAbility.IsReady)
+        if(playerAbility != null)
         {
-            StartCoroutine(playerAbility.Activate(this));
-            TweakRangeVisual(playerAbility.Range,!rangeVisual.gameObject.activeInHierarchy);
+            if(Input.GetMouseButtonDown(0) && playerAbility.requirementsFulfilled && playerAbility.IsMouseBased && playerAbility.IsReady)
+            {
+                StartCoroutine(playerAbility.Activate(this));
+                TweakRangeVisual(playerAbility.Range,!rangeVisual.gameObject.activeInHierarchy);
+            }
         }
         if(Input.GetKey(KeyCode.R))
         {
@@ -103,7 +114,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.UIManager.PlayerUI.UpdateHealthIndicator(Health);
             if (Health <= 0)
             {
-                GameManager.Instance.Death();
+                GameManager.Instance.LocationManager.Death();
             }
             StartCoroutine(Immunity());
         }

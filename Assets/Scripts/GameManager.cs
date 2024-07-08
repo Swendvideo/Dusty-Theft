@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(LocationManager.GameProcess());
+        LocationManager.StartProcess();
     }
 
     void Awake()

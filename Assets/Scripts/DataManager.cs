@@ -22,22 +22,25 @@ public class DataManager : MonoBehaviour
     public List<PlayerAbility> playerAbilities;
     public List<Treasure> treasures;
     public PlayerAbility selectedAbility;
+    public List<PlayerAbility> PurchasedPlayerAbilities;
 
     public void AddMoney(int money)
     {
         Money += money;
+        GameManager.Instance.UIManager.UpdateMoneyIndicator();
+        SaveData();
     }
 
-    public void SaveData(PlayerData pd)
+    public void SaveData()
     {
-        string data = JsonUtility.ToJson(pd);
+        string data = JsonUtility.ToJson(new PlayerData(PurchasedPlayerAbilities,Money));
         Debug.Log(data);
-        PlayerPrefs.SetString("PlayerData", data);
+        PlayerPrefs.SetString("Data", data);
     }
 
     public PlayerData LoadData()
     {
-        string data = PlayerPrefs.GetString("PlayerData", "");
+        string data = PlayerPrefs.GetString("Data", "");
         if(data != "")
         {
             return JsonUtility.FromJson<PlayerData>(data);
@@ -47,7 +50,14 @@ public class DataManager : MonoBehaviour
             return new PlayerData();
         }
     }
-
+    private void Start()
+    {
+        PlayerData playerData = LoadData();
+        PurchasedPlayerAbilities = playerData.PurchasedPlayerAbilities;
+        Money = playerData.money;
+        GameManager.Instance.UIManager.UpdateMoneyIndicator();
+        Debug.Log(Money);
+    }
     public void ChangeDifficulty(int difficulty)
     {
         Debug.Log(difficulty);
@@ -74,23 +84,15 @@ public class DataManager : MonoBehaviour
         return suitableTreasures;
     }
 
-    void Awake()
-    {
-        PlayerData data = new PlayerData();
-        var data1 = data;
-        data1.money = 1000;
-        data = data1;
-        SaveData(data);
-
-        PlayerData datanew = LoadData();
-        Debug.Log(datanew.money);
-    }
-
+    [Serializable]
     public struct PlayerData
     {
         public int money;
+        public List<PlayerAbility> PurchasedPlayerAbilities;
+        public PlayerData(List<PlayerAbility> ppa,int m)
+        {
+            PurchasedPlayerAbilities = ppa;
+            money = m;
+        }
     }
-
-
-
 }

@@ -24,4 +24,9 @@ public class PlayerUI : MonoBehaviour
     {
         playerEscapeIndicatorUI.UpdateEscapeIndicator(fillAmount);
     }
+
+    public void HideAbilityIndicator(bool hide)
+    {
+        playerAbilityUI.gameObject.SetActive(!hide);
+    }
 }

@@ -109,7 +109,7 @@ MonoBehaviour:
   detectionCollider: {fileID: 4869770917676167105}
   ExcludeRangeAbs: 3
   arrowPrefab: {fileID: 453082566351541472, guid: eeccf921d08abaa48819a32512a974f4, type: 3}
-  projectileSpeed: 14
+  projectileSpeed: 16
 --- !u!58 &4869770917676167105
 CircleCollider2D:
   m_ObjectHideFlags: 0

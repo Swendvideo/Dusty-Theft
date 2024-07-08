@@ -221,11 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e48958bb458c6347bce12bd8eb91bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaiseSpeed: 3
+  chaiseSpeed: 3.3
   patrolSpeed: 2.5
   patrolDetectionRadius: 7
   chaseDetectionRadius: 10
-  abilityCooldown: 2
+  abilityCooldown: 1.5
   navMeshAgent: {fileID: 6302802766383488960}
   detectionCollider: {fileID: 4869770917676167105}
   ExcludeRangeAbs: 3

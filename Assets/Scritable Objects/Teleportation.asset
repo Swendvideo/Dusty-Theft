@@ -21,3 +21,4 @@ MonoBehaviour:
   requirementsFulfilled: 0
   rangeVisualGreen: {r: 0.5137255, g: 1, b: 0.5183856, a: 0.0627451}
   rangeVisualRed: {r: 1, g: 0.5137255, b: 0.5278221, a: 0.0627451}
+  priceInShop: 250

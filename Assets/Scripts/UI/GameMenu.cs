@@ -8,6 +8,7 @@ public class GameMenu : MonoBehaviour
 {
     [SerializeField] Slider difficultySlider;
     [SerializeField] TMP_Text difficultyText;
+    [SerializeField] Shop shop;
     public void OnEnterDungeonButton()
     {
         GameManager.Instance.DataManager.ChangeDifficulty((int)difficultySlider.value+1);
@@ -17,5 +18,10 @@ public class GameMenu : MonoBehaviour
     public void OnDifficultySliderChange()
     {
         difficultyText.text = (difficultySlider.value + 1).ToString();
+    }
+
+    public void OnShopButton()
+    {
+        shop.UpdateShop();
     }
 }

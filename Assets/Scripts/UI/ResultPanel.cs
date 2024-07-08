@@ -18,6 +18,7 @@ public class ResultPanel : MonoBehaviour
         this.timeSpent.text = $"{timeSpan.Minutes}:{timeSpan.Seconds}";
         this.itemsCollected.text = itemsCollected.ToString();
         this.revenue.text = revenue.ToString();
+        this.headline.text = headline;
     }
 
     public void OnReturnButtonPress()

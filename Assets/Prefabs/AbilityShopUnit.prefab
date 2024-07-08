@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 616445222027909826}
   - component: {fileID: 5954310733531571596}
   - component: {fileID: 7127597521420232059}
+  - component: {fileID: 6732100745687804892}
   m_Layer: 5
-  m_Name: Rectangle
+  m_Name: AbilityShopUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072661875192383945}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -101,6 +102,20 @@ MonoBehaviour:
   m_useMaxRoundness: 0
   m_uniformRoundness: 1
   m_roudnessInPixels: {x: 30, y: 0, z: 0, w: 0}
+--- !u!114 &6732100745687804892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072661875192383945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9309a2c8029caf043993e4332a0690ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 4632380188913642147}
+  priceText: {fileID: 3777110178506295020}
 --- !u!1 &2077192839068383529
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,10 +208,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 33.6
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -347,7 +362,7 @@ GameObject:
   - component: {fileID: 5360145846131422446}
   - component: {fileID: 4632380188913642147}
   m_Layer: 5
-  m_Name: Rectangle
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
