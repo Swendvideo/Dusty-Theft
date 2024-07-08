@@ -30,13 +30,11 @@ public class LocationManager : MonoBehaviour
     public void AddTreasure(Treasure treasure)
     {
         treasuresCollected.Add(treasure);
-        Debug.Log(treasuresCollected.Count);
     }
 
     public void AreaCleared()
     {
         sceneCompleted = true;
-        Debug.Log("TEST");
     }
     void ActivateLoadingScreen()
     {
@@ -107,17 +105,7 @@ public class LocationManager : MonoBehaviour
             e.Init();
             enemies.Add(e);
             difficultyCoin -= randomEnemyType.DifficultyCost;
-            Debug.Log("spawned");
             yield return new WaitUntil(() => e.isActiveAndEnabled);
-        }
-    }
-    
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log("TTT");
-            DestroyEnemiesAndArea();
         }
     }
 
@@ -135,7 +123,6 @@ public class LocationManager : MonoBehaviour
             enemy.StopAllCoroutines();
             Destroy(enemy.gameObject);
         }
-        Debug.Log(activeArea == null);
         Destroy(activeArea.gameObject);
         activeArea = null;
         enemies.Clear();

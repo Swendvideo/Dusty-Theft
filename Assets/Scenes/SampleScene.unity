@@ -7026,13 +7026,13 @@ MonoBehaviour:
   locations:
   - Area: {fileID: 7770957135046199505, guid: 25ef60dbcb07f3d48b0022a7bc292277, type: 3}
     DifficultyCost: 2
-    maxEnemies: 5
+    maxEnemies: 6
   - Area: {fileID: 7770957135046199505, guid: 7dcfc28ad4372c944b8659f0089d7372, type: 3}
     DifficultyCost: 1
     maxEnemies: 5
   - Area: {fileID: 7770957135046199505, guid: a6617331c0621454c813aa1a928dd69b, type: 3}
     DifficultyCost: 2
-    maxEnemies: 5
+    maxEnemies: 7
   treasureRoom:
     Area: {fileID: 5663182333177720755, guid: 02c024751b792914c88828a8057fa45c, type: 3}
     DifficultyCost: 0

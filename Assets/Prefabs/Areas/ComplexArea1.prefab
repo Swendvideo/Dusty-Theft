@@ -1583,12 +1583,7 @@ MonoBehaviour:
   enemySpawnArea: {fileID: 3970505491112530756}
   spawnPoint: {fileID: 591087461228774484}
   areaExit: {fileID: 1805253114222814413}
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enemies: []
 --- !u!1 &6922696182512288135
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,11 +56,9 @@ public class DataManager : MonoBehaviour
         PurchasedPlayerAbilities = playerData.PurchasedPlayerAbilities;
         Money = playerData.money;
         GameManager.Instance.UIManager.UpdateMoneyIndicator();
-        Debug.Log(Money);
     }
     public void ChangeDifficulty(int difficulty)
     {
-        Debug.Log(difficulty);
         Difficulty = difficulty;
     }
 

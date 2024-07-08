@@ -110,7 +110,6 @@ public class Player : MonoBehaviour
         if (!isImmune)
         {
             Health -= damage;
-            Debug.Log(Health);
             GameManager.Instance.UIManager.PlayerUI.UpdateHealthIndicator(Health);
             if (Health <= 0)
             {
