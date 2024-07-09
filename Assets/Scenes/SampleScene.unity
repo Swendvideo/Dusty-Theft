@@ -5202,6 +5202,10 @@ MonoBehaviour:
     EnemyPrefab: {fileID: -5201120703984520619, guid: e58742390aec710449a0d21a086edd08, type: 3}
     DifficultyCost: 2
     CanSpawn: 1
+  - Name: Frost Wizard
+    EnemyPrefab: {fileID: -3121125521228258530, guid: 1003dc242bfb3dc4fa3179045416756d, type: 3}
+    DifficultyCost: 2
+    CanSpawn: 1
   playerAbilities:
   - {fileID: 11400000, guid: cd03d0b41525abb4fbfd8a39098a4f94, type: 2}
   - {fileID: 11400000, guid: 76b76f37fe390254dab9f52d413ccd36, type: 2}

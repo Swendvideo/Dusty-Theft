@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class Archer : Enemy
 {
-    bool isClearView;
     bool isAbilityCycleActive = false;
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] float projectileSpeed;

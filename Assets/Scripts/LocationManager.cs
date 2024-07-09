@@ -75,7 +75,7 @@ public class LocationManager : MonoBehaviour
         NavMeshHit hit;
         var x = UnityEngine.Random.Range(bounds.min.x,bounds.max.x);
         var y = UnityEngine.Random.Range(bounds.min.y,bounds.max.y);
-        NavMesh.SamplePosition(new Vector3(x,y,0) , out hit, 100f, NavMesh.AllAreas);
+        NavMesh.SamplePosition(new Vector3(x,y,0) , out hit, 1000f, NavMesh.AllAreas);
         return hit.position;
     }
 
