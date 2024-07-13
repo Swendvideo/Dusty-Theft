@@ -33,4 +33,9 @@ public class PlayerUI : MonoBehaviour
     {
         playerAbilityUI.SetAbilityIcon(icon);
     }
+
+    public void SetActive(bool active)
+    {
+        gameObject.SetActive(active);
+    }
 }

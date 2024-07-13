@@ -1,12 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.EventSystems;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "ScriptableObjects/Abilities/Teleportation")]
 public class Teleportation : PlayerAbility 
 {
     public override IEnumerator Activate(Player player)

@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "ScriptableObjects/Abilities/Dash")]
 public class Dash : PlayerAbility
 {
     [SerializeField] float dashPower;

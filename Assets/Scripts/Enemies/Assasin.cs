@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -23,7 +22,7 @@ public class Assasin : Enemy
         colorChanging.Append(leapIndicator.DOColor(leapIndicatorColorFinal, abilityCooldown)).SetAutoKill(false).Pause();
     }
 
-    public override void MoveAggro()
+    protected override void MoveAggro()
     {
         if(Physics2D.Raycast(transform.position, playerTransform.position - transform.position, (playerTransform.position - transform.position).magnitude, 1 << 6))
         {
@@ -33,7 +32,6 @@ public class Assasin : Enemy
                 isAbilityCycleActive = false;
                 abilityCycle = null;
             }
-            navMeshAgent.SetDestination(playerTransform.position);
             DeactivateIndicator();
         }
         else
@@ -43,12 +41,12 @@ public class Assasin : Enemy
                 abilityCycle = StartCoroutine(AbilityCycle());
                 isAbilityCycleActive = true;
             }
-            navMeshAgent.SetDestination(playerTransform.position);
             leapIndicator.transform.right = new Vector3(playerTransform.position.x - transform.position.x, playerTransform.position.y - transform.position.y, 0);
         }
+        base.MoveAggro();
     }
 
-    public override void OnTriggerExit2D(Collider2D other)
+    protected override void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
@@ -82,7 +80,7 @@ public class Assasin : Enemy
         colorChanging.Rewind(false);
     }
 
-    public override IEnumerator AbilityCycle()
+    protected override IEnumerator AbilityCycle()
     {
         while(true)
         {
@@ -96,7 +94,7 @@ public class Assasin : Enemy
         }
     }
 
-    public override void ActivateAbility()
+    protected override void ActivateAbility()
     {
         rb.AddForce((playerTransform.position-transform.position).normalized * leapPower, ForceMode2D.Impulse);
     }

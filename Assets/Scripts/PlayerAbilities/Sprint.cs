@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "ScriptableObjects/Abilities/Sprint")]
 public class Sprint : PlayerAbility
 {
     [SerializeField] float sprintPower;

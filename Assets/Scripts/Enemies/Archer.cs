@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -9,7 +8,7 @@ public class Archer : Enemy
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] float projectileSpeed;
     Coroutine abilityCycle;
-    public override void MoveAggro()
+    protected override void MoveAggro()
     {
         if(Physics2D.Raycast(transform.position, playerTransform.position - transform.position, (playerTransform.position - transform.position).magnitude, 1 << 6))
         {
@@ -20,7 +19,7 @@ public class Archer : Enemy
                 abilityCycle = null;
             }
             navMeshAgent.isStopped = false;
-            navMeshAgent.SetDestination(playerTransform.position);
+            SetDestination(playerTransform.position);
         }
         else
         {
@@ -33,7 +32,7 @@ public class Archer : Enemy
         }
     }
 
-    public override void OnTriggerExit2D(Collider2D other)
+    protected override void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
@@ -49,7 +48,7 @@ public class Archer : Enemy
 
     }
 
-    public override IEnumerator AbilityCycle()
+    protected override IEnumerator AbilityCycle()
     {
         while(true)
         {
@@ -58,7 +57,7 @@ public class Archer : Enemy
         }
     }
 
-    public override void ActivateAbility()
+    protected override void ActivateAbility()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, playerTransform.position - transform.position, int.MaxValue, 1 << 6);
         Debug.DrawRay(hit.point, hit.point - (Vector2)transform.position, Color.green, 10);

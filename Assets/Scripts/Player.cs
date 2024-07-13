@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -106,6 +105,12 @@ public class Player : MonoBehaviour
         GameManager.Instance.UIManager.PlayerUI.UpdateEscapeIndicator(escapeTimer/timeToEscape);
     }
 
+    public void DisableAndDestroy()
+    {
+        StopAllCoroutines();
+        Destroy(gameObject);
+    }
+
     void TakeDamage(float damage)
     {
         if (!isImmune)
@@ -155,9 +160,10 @@ public class Player : MonoBehaviour
     {
         isImmune = true;
         animator.SetBool("IsImmune", true);
-        //Physics2D.IgnoreLayerCollision(7,8, true);        
-        yield return new WaitForSeconds(immunityDuration);
-        //Physics2D.IgnoreLayerCollision(7,8, false);
+        Physics2D.IgnoreLayerCollision(7,8, true);
+        yield return new WaitForSeconds(0.2f);
+        Physics2D.IgnoreLayerCollision(7,8, false);
+        yield return new WaitForSeconds(immunityDuration-0.2f);
         animator.SetBool("IsImmune", false);
         isImmune = false;
     }

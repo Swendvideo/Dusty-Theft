@@ -11,13 +11,13 @@ public class GameMenu : MonoBehaviour
     [SerializeField] Shop shop;
     public void OnEnterDungeonButton()
     {
-        GameManager.Instance.DataManager.ChangeDifficulty((int)difficultySlider.value+1);
+        GameManager.Instance.DataManager.ChangeDifficulty((int)difficultySlider.value+5);
         GameManager.Instance.StartGame();
     }
 
     public void OnDifficultySliderChange()
     {
-        difficultyText.text = (difficultySlider.value + 1).ToString();
+        difficultyText.text = difficultySlider.value.ToString();
     }
 
     public void OnShopButton()

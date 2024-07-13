@@ -12,8 +12,9 @@ public class Wizard : Enemy
     [SerializeField] float projectileSpeed;
     [SerializeField] float projectileBackDistance;
     [SerializeField] float projectileBackSpeed;
+    [SerializeField] float slownessWhenInSightMultiplier;
     Coroutine abilityCycle;
-    public override void MoveAggro()
+    protected override void MoveAggro()
     {
         if(Physics2D.Raycast(transform.position, playerTransform.position - transform.position, (playerTransform.position - transform.position).magnitude, 1 << 6))
         {
@@ -22,9 +23,9 @@ public class Wizard : Enemy
                 StopCoroutine(abilityCycle);
                 isAbilityCycleActive = false;
                 abilityCycle = null;
+                navMeshAgent.speed = chaiseSpeed;
             }
-            navMeshAgent.isStopped = false;
-            navMeshAgent.SetDestination(playerTransform.position);
+            SetDestination(playerTransform.position);
         }
         else
         {
@@ -32,12 +33,13 @@ public class Wizard : Enemy
             {
                 abilityCycle = StartCoroutine(AbilityCycle());
                 isAbilityCycleActive = true;
+                navMeshAgent.speed = chaiseSpeed/slownessWhenInSightMultiplier;
             }
-            navMeshAgent.isStopped = true;
+            
         }
     }
 
-    public override void OnTriggerExit2D(Collider2D other)
+    protected override void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
@@ -53,7 +55,7 @@ public class Wizard : Enemy
 
     }
 
-    public override IEnumerator AbilityCycle()
+    protected override IEnumerator AbilityCycle()
     {
         while(true)
         {
@@ -62,7 +64,7 @@ public class Wizard : Enemy
         }
     }
 
-    public override void ActivateAbility()
+    protected override void ActivateAbility()
     {
         var t = Mathf.PI*2/20;
         float currentAngle = 0;

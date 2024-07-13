@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     {
         ResultPanel.SetEndResult(headline,time,itemsCollected,revenue);
         Menu.gameObject.SetActive(true);
+        PlayerUI.SetActive(false);
     }
 
     public void UpdateMoneyIndicator()

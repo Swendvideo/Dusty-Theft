@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
-        string data = JsonUtility.ToJson(new PlayerData(PurchasedPlayerAbilities,Money));
+        string data = JsonUtility.ToJson(new PlayerData(PurchasedPlayerAbilities,selectedAbility,Money));
         Debug.Log(data);
         PlayerPrefs.SetString("Data", data);
     }
@@ -61,9 +61,17 @@ public class DataManager : MonoBehaviour
         {
             PurchasedPlayerAbilities = playerData.PurchasedPlayerAbilities;
         }
+        selectedAbility = playerData.selectedAbility;
         Money = playerData.money;
         GameManager.Instance.UIManager.UpdateMoneyIndicator();
     }
+
+    public void SelectAbility(PlayerAbility ability)
+    {
+        selectedAbility = ability;
+        SaveData();
+    }
+
     public void ChangeDifficulty(int difficulty)
     {
         Difficulty = difficulty;
@@ -73,6 +81,11 @@ public class DataManager : MonoBehaviour
     {
         int enemyCoin = (int)math.round(0.5f*Difficulty +0.1f);
         return enemyCoin;
+    }
+
+    public int GetLocationCostBasedOnDifficulty()
+    {
+        return (int)math.round(Mathf.Sqrt(Difficulty)*3);
     }
 
     public List<Treasure> GetTreasuresBasedOnDifficulty(float costMultiplier)
@@ -89,15 +102,18 @@ public class DataManager : MonoBehaviour
         return suitableTreasures;
     }
 
+
     [Serializable]
     public struct PlayerData
     {
         public int money;
+        public PlayerAbility selectedAbility;
         public List<PlayerAbility> PurchasedPlayerAbilities;
-        public PlayerData(List<PlayerAbility> ppa,int m)
+        public PlayerData(List<PlayerAbility> ppa,PlayerAbility sa,int m)
         {
             PurchasedPlayerAbilities = ppa;
             money = m;
+            selectedAbility = sa;
         }
     }
 }

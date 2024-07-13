@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,9 +16,9 @@ public class EnemyType
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] protected float chaiseSpeed;
-    [SerializeField] float patrolSpeed;
-    [SerializeField] float patrolDetectionRadius;
-    [SerializeField] float chaseDetectionRadius;
+    [SerializeField] protected float patrolSpeed;
+    [SerializeField] protected float patrolDetectionRadius;
+    [SerializeField] protected float chaseDetectionRadius;
     [SerializeField] protected float abilityCooldown;
     [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] CircleCollider2D detectionCollider;
@@ -61,7 +59,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    virtual public void OnTriggerEnter2D(Collider2D other)
+    virtual protected void OnTriggerEnter2D(Collider2D other)
     {
         if(other.transform.CompareTag("Player"))
         {
@@ -74,15 +72,14 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    virtual public void OnTriggerExit2D(Collider2D other)
+    virtual protected void OnTriggerExit2D(Collider2D other)
     {
         if(other.transform.CompareTag("Player"))
         {
-            navMeshAgent.SetDestination(playerTransform.position);
+            SetDestination(playerTransform.position);
             navMeshAgent.autoBraking = true;
             navMeshAgent.speed = patrolSpeed;
             isAggro = false;
-            StartCoroutine(CheckIfAgentIsStuck());
             detectionCollider.radius = patrolDetectionRadius;
         }
     }
@@ -94,22 +91,56 @@ public abstract class Enemy : MonoBehaviour
         NavMesh.SamplePosition(new Vector3(transform.position.x + randomNum[UnityEngine.Random.Range(0,randomNum.Length)] ,transform.position.y + randomNum[UnityEngine.Random.Range(0,randomNum.Length)]) , out hit, 5f, NavMesh.AllAreas);
         return hit.position;
     }
-    virtual public void MovePatrol()
+    virtual protected void MovePatrol()
     {
         Vector3 point = GetPatrolPoint();
-        navMeshAgent.SetDestination(point);
+        SetDestination(point);
     }
-    virtual public void MoveAggro()
+    virtual protected void MoveAggro()
     {
-        navMeshAgent.SetDestination(target.position);
+        SetDestination(target.position);
     }
 
-    virtual public void ActivateAbility()
+
+
+    public void DisableAndDestroy()
+    {
+        StopAllCoroutines();
+        Destroy(gameObject);
+    }
+
+    protected void SetDestination(Vector3 targetPos) // NavMeshPlus x issue
+    {
+		if(Mathf.Abs(transform.position.x - targetPos.x) < 0.0001f)
+        {
+            Vector3 driftPos;
+            NavMeshHit hit;
+            if(NavMesh.SamplePosition(targetPos + new Vector3(0.0001f, 0f, 0f),out hit,0, NavMesh.AllAreas))
+            {
+                driftPos = targetPos + new Vector3(0.0001f, 0f, 0f);
+            }
+            else if(NavMesh.SamplePosition(targetPos + new Vector3(-0.0001f, 0f, 0f),out hit,0, NavMesh.AllAreas))
+            {
+                driftPos = targetPos + new Vector3(-0.0001f, 0f, 0f);
+            }
+            else
+            {
+                driftPos = GetPatrolPoint();
+            }
+            navMeshAgent.SetDestination(driftPos);
+        }
+        else
+        {
+            navMeshAgent.SetDestination(targetPos);
+        }
+    }
+
+    virtual protected void ActivateAbility()
     {
         
     }
 
-    virtual public IEnumerator AbilityCycle()
+    virtual protected IEnumerator AbilityCycle()
     {
         while(true)
         {
@@ -117,7 +148,6 @@ public abstract class Enemy : MonoBehaviour
             ActivateAbility();
         }
     }
-
     IEnumerator CheckIfAgentIsStuck()
     {
         float stopTimer = 0;

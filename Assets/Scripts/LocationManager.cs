@@ -5,7 +5,6 @@ using System.Linq;
 using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 [Serializable]
 public class Location
@@ -13,6 +12,7 @@ public class Location
     public Area Area;
     public int DifficultyCost;
     public int maxEnemies;
+    public bool canAppear = true;
 }
 public class LocationManager : MonoBehaviour
 {
@@ -66,7 +66,7 @@ public class LocationManager : MonoBehaviour
         }
         GameManager.Instance.UIManager.EndGame(headline,Time.realtimeSinceStartup - startTime, treasuresCollected.Count, revenue);
         DestroyEnemiesAndArea();
-        Destroy(player.gameObject);
+        player.DisableAndDestroy();
         treasuresCollected.Clear();
     }
 
@@ -121,8 +121,7 @@ public class LocationManager : MonoBehaviour
     {
         foreach(Enemy enemy in enemies)
         {
-            enemy.StopAllCoroutines();
-            Destroy(enemy.gameObject);
+            enemy.DisableAndDestroy();
         }
         Destroy(activeArea.gameObject);
         activeArea = null;
@@ -131,16 +130,18 @@ public class LocationManager : MonoBehaviour
     public IEnumerator GameProcess()
     {
         loadScreen.gameObject.SetActive(true);
-        int locationCost = GameManager.Instance.DataManager.Difficulty;
+        int locationCost = GameManager.Instance.DataManager.GetLocationCostBasedOnDifficulty();
         player = Instantiate(playerPrefab);
         player.Init();
         player.gameObject.SetActive(false);
         GameManager.Instance.PlayerCamera.SetTarget(player.transform);
         startTime = Time.realtimeSinceStartup;
+        Physics2D.IgnoreLayerCollision(7,8, false);
         while(locationCost > 0)
         {
             ActivateLoadingScreen();
             yield return new WaitForSeconds(0.3f);
+            GameManager.Instance.UIManager.PlayerUI.SetActive(true);
             GameManager.Instance.UIManager.PlayerUI.UpdateHealthIndicator(player.Health);
             if(activeArea != null)
             {
@@ -148,12 +149,12 @@ public class LocationManager : MonoBehaviour
             }
             yield return null;
             GameManager.Instance.UIManager.Menu.gameObject.SetActive(false);
-            var AvailableLocations = locations.Where(l => locationCost - l.DifficultyCost >= 0);
+            var AvailableLocations = locations.Where(l => (locationCost - l.DifficultyCost >= 0) && l.canAppear);
             Location randomLocation = AvailableLocations.ElementAt(UnityEngine.Random.Range(0,AvailableLocations.Count()));
             locationCost -= randomLocation.DifficultyCost;
             var loc = Instantiate(randomLocation.Area);
             activeArea = loc;
-            navMeshSurface.BuildNavMeshAsync();
+            navMeshSurface.BuildNavMesh();
             player.transform.position = loc.spawnPoint.position;
             yield return null;
             yield return SpawnEnemies(loc, randomLocation.maxEnemies);

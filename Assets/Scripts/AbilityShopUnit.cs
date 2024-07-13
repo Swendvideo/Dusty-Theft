@@ -41,7 +41,7 @@ public class AbilityShopUnit : MonoBehaviour, IPointerClickHandler, IPointerEnte
     {
         if(!isPurchasable)
         {
-            GameManager.Instance.DataManager.selectedAbility = playerAbility;
+            GameManager.Instance.DataManager.SelectAbility(playerAbility);
             ReloadShop.Invoke();
         }
         if(isPurchasable && GameManager.Instance.DataManager.Money >= playerAbility.priceInShop)
