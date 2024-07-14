@@ -29,6 +29,16 @@ public class GameManager : MonoBehaviour
         LocationManager.StartProcess();
     }
 
+    public void ContinueGame()
+    {
+        
+    }
+
+    public void NewGame()
+    {
+
+    }
+
     void Awake()
     {
         Instance = this;

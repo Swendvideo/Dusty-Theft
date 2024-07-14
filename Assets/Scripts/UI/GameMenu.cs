@@ -24,4 +24,9 @@ public class GameMenu : MonoBehaviour
     {
         shop.UpdateShop();
     }
+
+    public void OnBackButton()
+    {
+        GameManager.Instance.UIManager.MainMenu.SetActive(true);
+    }
 }

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public PlayerUI PlayerUI;
     public ResultPanel ResultPanel;
+    public MainMenu MainMenu;
     public Transform Menu;
     [SerializeField] TMP_Text MoneyIndicator;
 

@@ -50,6 +50,13 @@ public class DataManager : MonoBehaviour
             return new PlayerData();
         }
     }
+
+    public void ResetAllData()
+    {
+        PlayerPrefs.DeleteAll();
+        Start();
+    }
+
     private void Start()
     {
         PlayerData playerData = LoadData();

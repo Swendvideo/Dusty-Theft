@@ -196,7 +196,7 @@ MonoBehaviour:
   patrolSpeed: 3
   patrolDetectionRadius: 10
   chaseDetectionRadius: 15
-  abilityCooldown: 1
+  abilityCooldown: 0.7
   navMeshAgent: {fileID: 6302802766383488960}
   detectionCollider: {fileID: 4869770917676167105}
   ExcludeRangeAbs: 3
